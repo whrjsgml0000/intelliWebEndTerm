@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SignUp</title>
+<title>회원가입</title>
 </head>
 <body>
 	<form id="signupForm" method="post" action="SignUp_process.jsp">

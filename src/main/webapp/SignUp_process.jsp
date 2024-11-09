@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 성공</title>
 </head>
 <body>
 	<h2>회원가입 성공</h2>
+	<%
+	String id = request.getParameter("id");
+	String password = request.getParameter("passwd");
+	%>
 	<a href="MainPage.jsp">메인으로 돌아가기</a>
 </body>
 </html>
