@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
-<html lang="en">
-
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,23 +38,17 @@
 
 
 </head>
-
 <body>
-
   <header>
     <jsp:include page="Navbar.jsp"/>
   </header>
-
   <main>
-
+	
     
 
   </main>
-
   <footer class="text-muted py-5">
     <jsp:include page="Footer.jsp"/>
   </footer>
-
 </body>
-
 </html>
