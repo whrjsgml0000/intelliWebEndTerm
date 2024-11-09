@@ -7,7 +7,7 @@
 <title>SignUp</title>
 </head>
 <body>
-	<form id="signupForm" method="post" action="SignUp.jsp">
+	<form id="signupForm" method="post" action="SignUp_process.jsp">
 	    <label>아이디 : <input id="id" name="id" type="text"></label><br>
         <label>비밀번호 : <input id="passwd" name="passwd" type="password"></label><br>
         <label>비밀번호 확인 : <input id="passwdCheck" name="passwdCheck" type="password"></label><br>
