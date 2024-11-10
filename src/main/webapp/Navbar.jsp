@@ -15,6 +15,7 @@
 	    <div class="container">
 	    	<a href="?language=ko">한국어</a>|<a href="?language=en">English</a>
 	    	<a href="MainPage.jsp"><fmt:message key="main"/></a>
+	    	<a href="Upload.jsp"><fmt:message key="upload"/></a>
 	        <a href="SignIn.jsp"><fmt:message key="logIn"/></a>
 	        <a href="SignUp.jsp"><fmt:message key="signUp"/></a>
 	    </div>
