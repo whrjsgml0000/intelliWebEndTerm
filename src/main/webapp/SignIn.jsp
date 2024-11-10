@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,16 +9,18 @@
     <title>로그인</title>
 </head>
 <body>
+	<fmt:setLocale value='<%=request.getParameter("language") %>'/>
+	<fmt:bundle basename="bundle.message">
 	<jsp:include page="Navbar.jsp"/>
 	
     <h2>로그인</h2>
     <form method="post" action="MainPage.jsp">
-        <label>아이디 : <input id="id" name="id" type="text" placeholder="id"></label><br>
-        <label>비밀번호 : <input id="passwd" name="passwd" type="password" placeholder="passwd"></label><br>
-        <input id="signIn" type="submit" value="로그인">
+        <label><fmt:message key="id"/> : <input id="id" name="id" type="text" placeholder="id"></label><br>
+        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="passwd"></label><br>
+        <input id="signIn" type="submit" value='<fmt:message key="logIn"/>'>
     </form>
     
     <jsp:include page="Footer.jsp"/>
-    
+    </fmt:bundle>
 </body>
 </html>

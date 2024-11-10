@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,17 +9,18 @@
     <title>회원가입</title>
 </head>
 <body>
+	<fmt:setLocale value='<%=request.getParameter("language") %>'/>
+	<fmt:bundle basename="bundle.message">
 	<jsp:include page="Navbar.jsp"/>
 	
 	<form id="signupForm" method="post" action="SignUp_process.jsp">
-	    <label>아이디 : <input id="id" name="id" type="text"></label><br>
-        <label>비밀번호 : <input id="passwd" name="passwd" type="password"></label><br>
-        <label>비밀번호 확인 : <input id="passwdCheck" name="passwdCheck" type="password"></label><br>
-        <input id="signup" type="button" value="회원가입" onclick="validate()">
+	    <label><fmt:message key="id"/> : <input id="id" name="id" type="text"></label><br>
+        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password"></label><br>
+        <label><fmt:message key="passwordCheck"/> : <input id="passwdCheck" name="passwdCheck" type="password"></label><br>
+        <input id="signup" type="button" value='<fmt:message key="signUp"/>' onclick="validate()">
     </form>
     
     <jsp:include page="Footer.jsp"/>
-    
-    <script src="resources/javascript/signup.js"></script>
+    </fmt:bundle>
 </body>
 </html>
