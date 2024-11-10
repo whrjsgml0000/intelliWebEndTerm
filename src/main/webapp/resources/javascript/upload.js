@@ -22,8 +22,8 @@ const uploadValidate = () => {
   }
 
   for (var f of files) {
-    if (f.size >= 1024 * 1024 * 2) {
-      alert("개별 파일 크기는 2MB를 넘을 수 없습니다.");
+    if (f.size >= 1024 * 1024 * 3) {
+      alert("개별 파일 크기는 3MB를 넘을 수 없습니다.");
       return;
     } else if (!f.name.match(/(.jpg|.png|.jpeg|.webp|.gif)$/)) {
       alert("파일에 지원하지 않는 확장자명이 존재합니다.");
