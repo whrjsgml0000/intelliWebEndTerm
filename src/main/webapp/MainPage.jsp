@@ -39,16 +39,16 @@
 
 </head>
 <body>
-  <header>
-    <jsp:include page="Navbar.jsp"/>
-  </header>
+  
+  <jsp:include page="Navbar.jsp"/>
+  
   <main>
 	
     
 
   </main>
-  <footer class="text-muted py-5">
-    <jsp:include page="Footer.jsp"/>
-  </footer>
+  
+  <jsp:include page="Footer.jsp"/>
+  
 </body>
 </html>

@@ -8,8 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        
-    </div>
+	<footer>
+    	<div class="container">
+        	&copy ggho4515@kyonggi.ac.kr
+    	</div>
+    </footer>
 </body>
 </html>

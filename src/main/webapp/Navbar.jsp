@@ -8,9 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <a href="SignIn.jsp">로그인</a>
-        <a href="SignUp.jsp">회원가입</a>
-    </div>
+	<header>
+	    <div class="container">
+	    	<select name="language">
+				<option value="ko">한국어
+				<option value="en">영어    	
+	    	</select>
+	    	<a href="MainPage.jsp">메인 페이지</a>
+	        <a href="SignIn.jsp">로그인</a>
+	        <a href="SignUp.jsp">회원가입</a>
+	    </div>
+    </header>
 </body>
 </html>

@@ -8,11 +8,16 @@
     <title>로그인</title>
 </head>
 <body>
+	<jsp:include page="Navbar.jsp"/>
+	
     <h2>로그인</h2>
     <form method="post" action="MainPage.jsp">
         <label>아이디 : <input id="id" name="id" type="text" placeholder="id"></label><br>
         <label>비밀번호 : <input id="passwd" name="passwd" type="password" placeholder="passwd"></label><br>
         <input id="signIn" type="submit" value="로그인">
     </form>
+    
+    <jsp:include page="Footer.jsp"/>
+    
 </body>
 </html>
