@@ -15,12 +15,13 @@
     
     <form name="form" method="post" enctype="multipart/form-data">
         <input type="text" name="title" id="title" maxlength="30" placeholder="제목을 지어주세요."><br>
-        <input type="file" name="file" id="file" placeholder="파일"><br>
-        <input type="submit" value="업로드">
-        
+        <textarea name="content" id="content"></textarea><br>
+        <input type="file" name="file" id="file" multiple><br>
+        <input id="button" type="button" value="업로드" onclick="uploadValidate()">
     </form>
     
     <jsp:include page="Footer.jsp"/>
     </fmt:bundle>
+    <script src="resources/javascript/upload.js"></script>
 </body>
 </html>
