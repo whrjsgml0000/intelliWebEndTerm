@@ -22,5 +22,6 @@
     
     <jsp:include page="Footer.jsp"/>
     </fmt:bundle>
+    <script src="resources/javascript/signup.js"></script>
 </body>
 </html>
