@@ -13,7 +13,7 @@
     <fmt:bundle basename="bundle.message">
     <jsp:include page="Navbar.jsp"/>
     
-    <form name="form" method="post" enctype="multipart/form-data">
+    <form id="form" name="form" method="post" enctype="multipart/form-data">
         <input type="text" name="title" id="title" maxlength="30" placeholder="제목을 지어주세요."><br>
         <textarea name="content" id="content"></textarea><br>
         <input type="file" name="file" id="file" multiple><br>
