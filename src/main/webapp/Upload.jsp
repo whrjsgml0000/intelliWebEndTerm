@@ -13,11 +13,11 @@
     <fmt:bundle basename="bundle.message">
     <jsp:include page="Navbar.jsp"/>
     
-    <form id="form" name="form" method="post" enctype="multipart/form-data">
-        <input type="text" name="title" id="title" maxlength="30" placeholder="제목을 지어주세요."><br>
-        <textarea name="content" id="content"></textarea><br>
+    <form id="form" name="form" method="post" enctype="multipart/form-data" action="Post.jsp">
+        <input type="text" name="title" id="title" maxlength="30" placeholder="Title..."><br>
+        <textarea name="content" id="content" placeholder="Content..."></textarea><br>
         <input type="file" name="file" id="file" multiple><br>
-        <input id="button" type="button" value="업로드" onclick="uploadValidate()">
+        <input id="button" type="button" value='<fmt:message key="upload"/>' onclick="uploadValidate()">
     </form>
     
     <jsp:include page="Footer.jsp"/>
