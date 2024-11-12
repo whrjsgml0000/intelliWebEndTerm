@@ -1,16 +1,9 @@
-package com.whrjsgml.entity;
+package com.whrjsgml.dto;
 
-public class User {
-	private Long id;
+public class InsertUserDTO {
 	private String userId;
 	private String userPass;
 	private String userNickname;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -29,6 +22,5 @@ public class User {
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	
 	
 }

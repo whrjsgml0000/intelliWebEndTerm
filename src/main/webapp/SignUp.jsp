@@ -12,11 +12,13 @@
 	<fmt:setLocale value='<%=request.getParameter("language") %>'/>
 	<fmt:bundle basename="bundle.message">
 	<jsp:include page="Navbar.jsp"/>
+	<h2><fmt:message key="signUp"/></h2>
 	
 	<form id="signupForm" method="post" action="SignUp_process.jsp">
-	    <label><fmt:message key="id"/> : <input id="id" name="id" type="text"></label><br>
-        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password"></label><br>
-        <label><fmt:message key="passwordCheck"/> : <input id="passwdCheck" name="passwdCheck" type="password"></label><br>
+	    <label><fmt:message key="id"/> : <input id="id" name="id" type="text" maxlength="20"></label><br>
+        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" maxlength="20"></label><br>
+        <label><fmt:message key="passwordCheck"/> : <input id="passwdCheck" name="passwdCheck" type="password" maxlength="20"></label><br>
+        <label><fmt:message key="nickname"/> : <input id="nickname" name="nickname" type="text" maxlength="20"></label><br>
         <input id="signup" type="button" value='<fmt:message key="signUp"/>' onclick="validate()">
     </form>
     

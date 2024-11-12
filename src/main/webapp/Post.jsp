@@ -9,9 +9,11 @@
 </head>
 <body>
     <jsp:include page="Navbar.jsp"/>
-
-        f 
-
+	<jsp:include page="Post_top.jsp"/>
+	
+	
+	
+	<jsp:include page="Post_bottom.jsp"/>
     <jsp:include page="Footer.jsp"/>
 </body>
 </html>

@@ -18,6 +18,7 @@
 	    	<a href="Upload.jsp"><fmt:message key="upload"/></a>
 	        <a href="SignIn.jsp"><fmt:message key="logIn"/></a>
 	        <a href="SignUp.jsp"><fmt:message key="signUp"/></a>
+	        <a href="MyPage.jsp"><fmt:message key="myPage"/></a>
 	    </div>
     </header>
 </body>

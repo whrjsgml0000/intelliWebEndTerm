@@ -13,7 +13,7 @@
 	<fmt:bundle basename="bundle.message">
 	<jsp:include page="Navbar.jsp"/>
 	
-    <h2>로그인</h2>
+    <h2><fmt:message key="logIn"/></h2>
     <form method="post" action="MainPage.jsp">
         <label><fmt:message key="id"/> : <input id="id" name="id" type="text" placeholder="id"></label><br>
         <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="passwd"></label><br>
