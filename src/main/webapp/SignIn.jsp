@@ -16,7 +16,7 @@
     <h2><fmt:message key="logIn"/></h2>
     <form method="post" action="MainPage.jsp">
         <label><fmt:message key="id"/> : <input id="id" name="id" type="text" placeholder="id"></label><br>
-        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="passwd"></label><br>
+        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="password"></label><br>
         <input id="signIn" type="submit" value='<fmt:message key="logIn"/>'>
     </form>
     

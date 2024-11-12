@@ -6,8 +6,7 @@ import com.whrjsgml.entity.Image;
 public class Post {
 	private Long id;
 	private String title;
-	private String userNickName;
+	private String userNickname;
 	private String content;
 	private List<Image> images;
-	
 }

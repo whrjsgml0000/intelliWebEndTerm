@@ -84,7 +84,7 @@ public class UserDAO {
 	public Optional<User> findByUserId(String userId){
 		conn = getConnection();
 		try {
-			String query = "SELECT * FROM " + TABLE + "WHERE user_id = ?";
+			String query = "SELECT * FROM " + TABLE + " WHERE user_id = ?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, userId);
 			
@@ -101,6 +101,7 @@ public class UserDAO {
 				user.setUserPass(userPass);
 				return Optional.of(user);
 			}
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
