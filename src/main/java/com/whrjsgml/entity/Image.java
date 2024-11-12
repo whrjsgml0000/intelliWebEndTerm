@@ -5,4 +5,5 @@ public class Image {
 	private String imagePath;
 	private String imageOriginalName;
 	private String imageStoredName;
+	private Long postId;
 }

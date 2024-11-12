@@ -3,5 +3,6 @@ create table IF NOT EXISTS users(
 	user_id VARCHAR(20) NOT NULL UNIQUE,
 	user_pass VARCHAR(20) NOT NULL,
 	user_nickname VARCHAR(20) NOT NULL UNIQUE,
+	create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	PRIMARY KEY (id)
 );
