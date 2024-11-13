@@ -11,7 +11,7 @@
 <%@ page import="java.io.*" %>
 
 <%
-String uploadPath = "D:\\upload";
+String uploadPath = "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image";
 int size = 1024 * 1024 * 15;
 MultipartRequest mr = new MultipartRequest(request,uploadPath,size,"UTF-8",new DefaultFileRenamePolicy());
 

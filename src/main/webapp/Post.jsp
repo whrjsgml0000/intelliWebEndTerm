@@ -1,3 +1,6 @@
+<%@page import="com.whrjsgml.entity.Image"%>
+<%@page import="java.util.List"%>
+<%@page import="com.whrjsgml.dao.ImageDAO"%>
 <%@page import="com.whrjsgml.entity.Post"%>
 <%@page import="java.util.Optional"%>
 <%@page import="com.whrjsgml.dao.PostDAO"%>
@@ -22,6 +25,12 @@
     		return;
     	}
     	Post post = opPost.get();
+    	
+    	ImageDAO imageDAO = new ImageDAO();
+    	List<Image> images = imageDAO.findImageByPostId(lPostId);
+    	List<String> imagePath = images.stream()
+				.map(image->"./resources/image/"+image.getImageStoredName())
+				.toList();
     %>
 </head>
 <body>
@@ -31,6 +40,11 @@
 	<main>
 		<h2><%=post.getTitle() %></h2>
 		<p><%=post.getContent() %></p>
+		<%
+			for(int i=0;i<imagePath.size();i++){
+				out.println("<img src=\"" + imagePath.get(i) + "\"/>");
+			}
+		%>
 		<p><%=post.getUpdateDateTime() %></p>
 		<p><%=post.getUploadDateTime() %></p>
 		<p><%=post.getUserId() %>
