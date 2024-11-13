@@ -20,6 +20,7 @@
 	<p><fmt:message key="id"/> : <%=user.getUserId() %></p>
 	<p><fmt:message key="nickname"/> : <%=user.getUserNickname() %>
 	<!-- 작성한 글 -->
+	<!-- 회원 탈퇴 -->
 	
 	<jsp:include page="Footer.jsp"/>
 	</fmt:bundle>

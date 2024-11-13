@@ -1,10 +1,12 @@
 package com.whrjsgml.dao;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.whrjsgml.dto.InsertPostDTO;
 import com.whrjsgml.entity.Post;
 
 public class PostDAO extends DAO {
@@ -42,7 +44,7 @@ public class PostDAO extends DAO {
 	
 	public Optional<Post> findPostById(Long id){
 		con = getConnection();
-		String query = "SELECT * FROM " + TABLE + " WHERE id=?";
+		String query = "SELECT * FROM " + TABLE + " WHERE post_id=?";
 		try {
 			ps = con.prepareStatement(query);
 			ps.setLong(1, id);
@@ -63,6 +65,30 @@ public class PostDAO extends DAO {
 			closeAll();
 		}
 		return Optional.ofNullable(null);
+	}
+	
+	public long insertPost(InsertPostDTO insertPostDTO) {
+		con = getConnection();
+		String query = "INSERT INTO " + TABLE + "(title,content,user_id) VALUES(?,?,?)";
+		long generatedId = 0;
+		try {
+			ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, insertPostDTO.getTitle());
+			ps.setString(2, insertPostDTO.getContent());
+			ps.setLong(3, insertPostDTO.getUserId());
+			int updateResult = ps.executeUpdate();
+			if(updateResult > 0) {
+				rs = ps.getGeneratedKeys();
+				if(rs.next())
+					generatedId = rs.getLong(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		
+		return generatedId;
 	}
 	
 }
