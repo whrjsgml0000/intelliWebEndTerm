@@ -9,7 +9,7 @@
     <title>파일 업로드</title>
 </head>
 <body>
-    <fmt:setLocale value='<%=request.getParameter("language") %>'/>
+    <fmt:setLocale value='<%=session.getAttribute("language") %>'/>
     <fmt:bundle basename="bundle.message">
     <jsp:include page="Navbar.jsp"/>
     

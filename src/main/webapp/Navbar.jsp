@@ -9,7 +9,13 @@
     <title>Navbar</title>
 </head>
 <body>
-	<fmt:setLocale value='<%=request.getParameter("language") %>'/>
+	<%
+	session.setMaxInactiveInterval(60*30);
+	String language = (String) request.getParameter("language");
+	if(language !=null)
+		session.setAttribute("language", language);
+	%>
+	<fmt:setLocale value='<%=session.getAttribute("language") %>'/>
 	<fmt:setBundle basename="bundle.message"/>
 	<header>
 	    <div class="container">

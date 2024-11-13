@@ -9,7 +9,7 @@
     <title>로그인</title>
 </head>
 <body>
-	<fmt:setLocale value='<%=request.getParameter("language") %>'/>
+	<fmt:setLocale value='<%=session.getAttribute("language") %>'/>
 	<fmt:bundle basename="bundle.message">
 	<jsp:include page="Navbar.jsp"/>
 	
