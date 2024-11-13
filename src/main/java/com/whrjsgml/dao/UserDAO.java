@@ -47,7 +47,6 @@ public class UserDAO {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -58,10 +57,15 @@ public class UserDAO {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private void closeAll() {
+		closeRS();
+		closePS();
+		closeCon();
 	}
 	
 	public void insertUser(InsertUserDTO insertUserDTO) {
@@ -76,9 +80,7 @@ public class UserDAO {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		closeRS();
-		closePS();
-		closeCon();
+		closeAll();
 	}
 	
 	public Optional<User> findByUserId(String userId){
@@ -103,12 +105,11 @@ public class UserDAO {
 			}
 			return null;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			closeAll();
 		}
-		closeRS();
-		closePS();
-		closeCon();
+		closeAll();
 		return Optional.of(null);
 	}
 	
