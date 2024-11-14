@@ -1,3 +1,4 @@
+<%@page import="com.whrjsgml.config.Const"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="org.apache.commons.fileupload.DiskFileUpload"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
@@ -12,11 +13,9 @@
 <%@ page import="java.io.*" %>
 
 <%
-//String uploadPath = "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image"; //desktop
-String uploadPath = "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image";
-int size = 1024 * 1024 * 15;
 DiskFileUpload dUpload = new DiskFileUpload();
-dUpload.setRepositoryPath(uploadPath);
+dUpload.setRepositoryPath(Const.IMAGE_UPLOAD_PATH);
+dUpload.setFileSizeMax(Const.UPLOAD_MAX_SIZE);
 List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
 	.filter(FileItem::isFormField)
@@ -59,7 +58,7 @@ while(itemIter.hasNext()){
 		
 		imageDAO.insertImage(imageDTO);
 		
-		File file = new File(uploadPath+"\\"+storedName);
+		File file = new File(Const.IMAGE_UPLOAD_PATH+"\\"+storedName);
 		fileItem.write(file);
 	}
 }

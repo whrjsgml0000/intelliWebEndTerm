@@ -1,3 +1,4 @@
+<%@page import="com.whrjsgml.config.Const"%>
 <%@page import="com.whrjsgml.entity.Image"%>
 <%@page import="java.util.List"%>
 <%@page import="com.whrjsgml.dao.ImageDAO"%>
@@ -29,7 +30,7 @@
     	ImageDAO imageDAO = new ImageDAO();
     	List<Image> images = imageDAO.findImageByPostId(lPostId);
     	List<String> imagePath = images.stream()
-				.map(image->"./resources/image/"+image.getImageStoredName())
+				.map(image->Const.IMAGE_RELATIVE_PATH + image.getImageStoredName())
 				.toList();
     	postDAO.updatePostViews(lPostId);
     %>
