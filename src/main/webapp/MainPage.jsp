@@ -24,7 +24,10 @@
 	}
 	
 	PostDAO postDAO = new PostDAO();
-	List<Post> posts = postDAO.findAllWithPaging(10, iPage);
+	int defalutPostViewCount = 10;
+	List<Post> posts = postDAO.findAllWithPaging(defalutPostViewCount, iPage);
+	long count = postDAO.getPostCount();
+	long maxPage = count % defalutPostViewCount == 0 ? count / defalutPostViewCount : count / defalutPostViewCount + 1;
 	%>
 	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE)%>' />
 	<fmt:bundle basename="bundle.message">
@@ -61,7 +64,14 @@
 		</tbody>
 		
 		</table>
-			
+			<a href="?page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"":""%>>이전 페이지</a>
+		<%
+		if(iPage < maxPage){
+		%>
+			<a href="?page=<%=iPage+1%>">다음 페이지</a>
+		<%
+		}
+		%>
 		</main>
 
 		<jsp:include page="<%=Page.FOOTER %>" />

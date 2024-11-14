@@ -148,4 +148,22 @@ public class PostDAO extends DAO {
 		}
 		return posts;
 	}
+	
+	public Long getPostCount() {
+		con = getConnection();
+		String query = "SELECT COUNT(*) FROM "+TABLE;
+		Long count = 0L;
+		try {
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				count = rs.getLong("count(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return count;
+	}
 }
