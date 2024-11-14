@@ -27,7 +27,7 @@ public class PostDAO extends DAO {
 			
 			while(rs.next()) {
 				Post post = new Post();
-				post.setId(rs.getLong("post_id"));
+				post.setPostId(rs.getLong("post_id"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getString("content"));
 				post.setUserId(rs.getLong("user_id"));
@@ -53,7 +53,7 @@ public class PostDAO extends DAO {
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				Post post = new Post();
-				post.setId(rs.getLong("post_id"));
+				post.setPostId(rs.getLong("post_id"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getString("content"));
 				post.setUserId(rs.getLong("user_id"));
@@ -132,7 +132,7 @@ public class PostDAO extends DAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Post post = new Post();
-				post.setId(rs.getLong("post_id"));
+				post.setPostId(rs.getLong("post_id"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getString("content"));
 				post.setUserId(rs.getLong("user_id"));

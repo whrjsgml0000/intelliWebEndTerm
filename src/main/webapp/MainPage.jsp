@@ -49,8 +49,8 @@
 			for(Post post:posts){
 		%>
 				<tr>
-					<td><%=post.getId() %></td>
-					<td><a href="<%=Page.POST %>?post_id=<%=post.getId()%>"><%=post.getTitle() %></a></td>
+					<td><%=post.getPostId()%></td>
+					<td><a href="<%=Page.POST%>?post_id=<%=post.getPostId()%>"><%=post.getTitle() %></a></td>
 					<td><%=post.getUser().getUserNickname() %></td>
 					<td><%=post.getUploadDateTime() %></td>
 					<td><%=post.getViews() %></td>

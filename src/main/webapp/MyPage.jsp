@@ -26,7 +26,6 @@
 	<p><fmt:message key="id"/> : <%=user.getUserId() %></p>
 	<p><fmt:message key="nickname"/> : <%=user.getUserNickname() %>
 	<!-- 작성한 글 -->
-	<!-- 회원 탈퇴 -->
 	<p><a href="<%=Page.DELETE_USER%>?id=<%=user.getId()%>">회원 탈퇴</a></p>
 	
 	<jsp:include page="<%=Page.FOOTER %>"/>
