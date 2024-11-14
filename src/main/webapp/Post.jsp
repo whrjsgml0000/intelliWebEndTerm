@@ -1,4 +1,5 @@
-<%@page import="com.whrjsgml.config.Const"%>
+<%@page import="com.whrjsgml.config.Page"%>
+<%@page import="com.whrjsgml.config.FileSetting"%>
 <%@page import="com.whrjsgml.entity.Image"%>
 <%@page import="java.util.List"%>
 <%@page import="com.whrjsgml.dao.ImageDAO"%>
@@ -14,29 +15,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물</title>
     <%
-    	String postId = request.getParameter("post_id");
-    	if(postId==null || postId.isBlank()){
-    		response.sendRedirect("MainPage.jsp");
-    	}
-    	long lPostId = Long.parseLong(postId);
-    	PostDAO postDAO = new PostDAO();
-    	Optional<Post> opPost = postDAO.findPostById(lPostId);
-    	if(opPost.isEmpty()){
-    		response.sendRedirect("MainPage.jsp");
-    		return;
-    	}
-    	Post post = opPost.get();
-    	
-    	ImageDAO imageDAO = new ImageDAO();
-    	List<Image> images = imageDAO.findImageByPostId(lPostId);
-    	List<String> imagePath = images.stream()
-				.map(image->Const.IMAGE_RELATIVE_PATH + image.getImageStoredName())
-				.toList();
-    	postDAO.updatePostViews(lPostId);
+    String postId = request.getParameter("post_id");
+        	if(postId==null || postId.isBlank()){
+        		response.sendRedirect(Page.MAIN);
+        	}
+        	long lPostId = Long.parseLong(postId);
+        	PostDAO postDAO = new PostDAO();
+        	Optional<Post> opPost = postDAO.findPostById(lPostId);
+        	if(opPost.isEmpty()){
+        		response.sendRedirect(Page.MAIN);
+        		return;
+        	}
+        	Post post = opPost.get();
+        	
+        	ImageDAO imageDAO = new ImageDAO();
+        	List<Image> images = imageDAO.findImageByPostId(lPostId);
+        	List<String> imagePath = images.stream()
+    			.map(image->FileSetting.IMAGE_RELATIVE_PATH + image.getImageStoredName())
+    			.toList();
+        	postDAO.updatePostViews(lPostId);
     %>
 </head>
 <body>
-    <jsp:include page="Navbar.jsp"/>
+    <jsp:include page="<%=Page.NAVBAR %>"/>
 	<jsp:include page="Post_top.jsp?post_id=<%=postId %>"/>
 	
 	<main>
@@ -54,6 +55,6 @@
 	</main>
 	
 	<jsp:include page="Post_bottom.jsp?post_id=<%=postId %>"/>
-    <jsp:include page="Footer.jsp"/>
+    <jsp:include page="<%=Page.FOOTER %>"/>
 </body>
 </html>

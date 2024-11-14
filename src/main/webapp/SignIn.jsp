@@ -1,3 +1,5 @@
+<%@page import="com.whrjsgml.config.Page"%>
+<%@page import="com.whrjsgml.config.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -10,14 +12,15 @@
 </head>
 <body>
 	<%
-	if(session.getAttribute("user_id") != null){
-		
+	if(session.getAttribute(Session.USERINFO) != null){
+		response.sendRedirect(Page.MAIN);
+		return;
 	}
 	%>
 	
-	<fmt:setLocale value='<%=session.getAttribute("language") %>'/>
+	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>
 	<fmt:bundle basename="bundle.message">
-	<jsp:include page="Navbar.jsp"/>
+	<jsp:include page="<%=Page.NAVBAR %>"/>
 	
     <h2><fmt:message key="logIn"/></h2>
     <form method="post" action="SignIn_process.jsp">
@@ -26,7 +29,7 @@
         <input id="signIn" type="submit" value='<fmt:message key="logIn"/>'>
     </form>
     
-    <jsp:include page="Footer.jsp"/>
+    <jsp:include page="<%=Page.FOOTER %>"/>
     </fmt:bundle>
 </body>
 </html>

@@ -1,4 +1,6 @@
-<%@page import="com.whrjsgml.config.Const"%>
+<%@page import="com.whrjsgml.config.Page"%>
+<%@page import="com.whrjsgml.config.Session"%>
+<%@page import="com.whrjsgml.config.FileSetting"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="org.apache.commons.fileupload.DiskFileUpload"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
@@ -14,8 +16,8 @@
 
 <%
 DiskFileUpload dUpload = new DiskFileUpload();
-dUpload.setRepositoryPath(Const.IMAGE_UPLOAD_PATH);
-dUpload.setFileSizeMax(Const.UPLOAD_MAX_SIZE);
+dUpload.setRepositoryPath(FileSetting.IMAGE_UPLOAD_PATH);
+dUpload.setFileSizeMax(FileSetting.UPLOAD_MAX_SIZE);
 List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
 	.filter(FileItem::isFormField)
@@ -32,7 +34,7 @@ for(int i=0;i<formFieldItems.size();i++){
 }
 Iterator<FileItem> itemIter = list.iterator();
 
-User user = (User) session.getAttribute("UserInfo");
+User user = (User) session.getAttribute(Session.USERINFO);
 
 InsertPostDTO insertPostDTO = new InsertPostDTO();
 insertPostDTO.setTitle(title);
@@ -51,17 +53,17 @@ while(itemIter.hasNext()){
 		String storedName = fileItem.getName();
 		// 파일 중복 이름 방지
 		storedName = storedName.substring(storedName.indexOf("\\")+1, storedName.lastIndexOf(".")) 
-				+ UUID.randomUUID().toString()
-				+ storedName.substring(storedName.lastIndexOf("."));
+		+ UUID.randomUUID().toString()
+		+ storedName.substring(storedName.lastIndexOf("."));
 		imageDTO.setStoredName(storedName);
 		imageDTO.setPostId(generatedId);
 		
 		imageDAO.insertImage(imageDTO);
 		
-		File file = new File(Const.IMAGE_UPLOAD_PATH+"\\"+storedName);
+		File file = new File(FileSetting.IMAGE_UPLOAD_PATH+"\\"+storedName);
 		fileItem.write(file);
 	}
 }
 
-response.sendRedirect("Post.jsp?post_id=" + generatedId);
+response.sendRedirect(Page.POST + "?post_id=" + generatedId);
 %>

@@ -1,3 +1,5 @@
+<%@page import="com.whrjsgml.config.Page"%>
+<%@page import="com.whrjsgml.config.Session"%>
 <%@page import="com.whrjsgml.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,29 +14,29 @@
 <body>
 	<%
 	session.setMaxInactiveInterval(60*30);
-	String language = (String) request.getParameter("language");
+	String language = (String) request.getParameter(Session.LANGUAGE);
 	if(language !=null)
-		session.setAttribute("language", language);
+		session.setAttribute(Session.LANGUAGE, language);
 	%>
-	<fmt:setLocale value='<%=session.getAttribute("language") %>'/>
+	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>
 	<fmt:setBundle basename="bundle.message"/>
 	<header>
 	    <div class="container">
 	    	<a href="?language=ko">한국어</a>|<a href="?language=en">English</a>
-	    	<a href="MainPage.jsp"><fmt:message key="main"/></a>
-	    	<a href="Upload.jsp"><fmt:message key="upload"/></a>
+	    	<a href="<%=Page.MAIN%>"><fmt:message key="main"/></a>
+	    	<a href="<%=Page.UPLOAD%>"><fmt:message key="upload"/></a>
 	    	<%
-	    	User user = (User)session.getAttribute("UserInfo");
+	    	User user = (User)session.getAttribute(Session.USERINFO);
 	    	if(user == null){
 	    	%>
-	        <a href="SignIn.jsp"><fmt:message key="logIn"/></a>
-	        <a href="SignUp.jsp"><fmt:message key="signUp"/></a>
+	        <a href="<%=Page.SIGNIN%>"><fmt:message key="logIn"/></a>
+	        <a href="<%=Page.SIGNUP%>"><fmt:message key="signUp"/></a>
 	        <%
 	        return;
 	        } 
 	        %>
-	        <a href="LogOut.jsp"><fmt:message key="logOut"/></a>
-	        <a href="MyPage.jsp"><fmt:message key="myPage"/></a>
+	        <a href="<%=Page.LOGOUT%>"><fmt:message key="logOut"/></a>
+	        <a href="<%=Page.MY%>"><fmt:message key="myPage"/></a>
 	    </div>
     </header>
 </body>

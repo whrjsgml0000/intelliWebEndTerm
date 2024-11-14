@@ -1,7 +1,7 @@
 package com.whrjsgml.config;
 
-public interface Const {
-	public static final String IMAGE_UPLOAD_PATH = "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image";
+public interface FileSetting {
+	public static final String IMAGE_UPLOAD_PATH = "C:\\Users\\CGH\\eclipse-workspace\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image";
 //	public static final String IMAGE_UPLOAD_PATH = "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image";
 	public static final Long MB = 1024L * 1024L;
 	public static final Long UPLOAD_MAX_SIZE = 15 * MB;
