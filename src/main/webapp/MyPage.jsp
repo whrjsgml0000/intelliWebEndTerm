@@ -11,6 +11,9 @@
 <body>
 	<%
 	User user = (User)session.getAttribute("UserInfo");
+	if(user == null){
+		response.sendRedirect("MainPage.jsp");
+	}
 	%>
 	<fmt:setLocale value='<%=session.getAttribute("language") %>'/>
 	<fmt:bundle basename="bundle.message">

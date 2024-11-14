@@ -2,6 +2,8 @@ package com.whrjsgml.entity;
 
 import java.sql.Timestamp;
 import java.util.List;
+
+import com.whrjsgml.dao.UserDAO;
 import com.whrjsgml.entity.Image;
 
 public class Post {
@@ -11,7 +13,15 @@ public class Post {
 	private String content;
 	private Timestamp uploadDateTime;
 	private Timestamp updateDateTime;
+	private Long views;
 	
+	
+	public Long getViews() {
+		return views;
+	}
+	public void setViews(Long views) {
+		this.views = views;
+	}
 	public Long getUserId() {
 		return userId;
 	}
@@ -47,6 +57,11 @@ public class Post {
 	}
 	public void setUpdateDateTime(Timestamp updateDateTime) {
 		this.updateDateTime = updateDateTime;
+	}
+	public User getUser() {
+		UserDAO userDAO = new UserDAO();
+		//TODO 리팩토링 필요
+		return userDAO.findById(userId).get();
 	}
 	
 	

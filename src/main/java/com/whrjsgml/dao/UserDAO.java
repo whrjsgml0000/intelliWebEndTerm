@@ -54,4 +54,29 @@ public class UserDAO extends DAO{
 		return Optional.ofNullable(null);
 	}
 	
+	public Optional<User> findById(Long id){
+		con = getConnection();
+		String query = "SELECT * FROM "+TABLE + " WHERE id=?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setLong(1, id);
+			rs = ps.executeQuery();
+			User user = new User();
+			if(rs.next()) {
+				user.setId(rs.getLong("id"));
+				user.setUserId(rs.getString("user_id"));
+				user.setUserPass(rs.getString("user_pass"));
+				user.setUserNickname(rs.getString("user_nickname"));
+				user.setCreateAt(rs.getTimestamp("create_at"));
+			}
+			return Optional.ofNullable(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		
+		return Optional.ofNullable(null);
+	}
+	
 }

@@ -17,7 +17,7 @@ String uploadPath = "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\
 int size = 1024 * 1024 * 15;
 DiskFileUpload dUpload = new DiskFileUpload();
 dUpload.setRepositoryPath(uploadPath);
-
+dUpload.setHeaderEncoding("UTF-8");
 List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
 	.filter(FileItem::isFormField)
@@ -55,7 +55,6 @@ while(itemIter.hasNext()){
 		storedName = storedName.substring(storedName.indexOf("\\")+1, storedName.lastIndexOf(".")) 
 				+ UUID.randomUUID().toString()
 				+ storedName.substring(storedName.lastIndexOf("."));
-		// original name 다시 추가해도 될 듯 파일 저장 방식이 덮어쓰기라 UUID를 추가할 것이기 때문에 근데 필요한가?
 		imageDTO.setStoredName(storedName);
 		imageDTO.setPostId(generatedId);
 		

@@ -14,7 +14,7 @@ public class PostDAO extends DAO {
 	
 	public List<Post> findAllWithPaging(int limit, int nowPage){
 		con = getConnection();
-		String query = "SELECT * FROM "+ TABLE + " LIMIT ? OFFSET ? ORDER BY DESC";
+		String query = "SELECT * FROM "+ TABLE + " ORDER BY upload_date_time DESC LIMIT ? OFFSET ?";
 		ArrayList<Post> posts = new ArrayList<Post>();
 		int offset = (nowPage-1) * limit;
 		try {
@@ -30,6 +30,7 @@ public class PostDAO extends DAO {
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getString("content"));
 				post.setUserId(rs.getLong("user_id"));
+				post.setViews(rs.getLong("views"));
 				post.setUpdateDateTime(rs.getTimestamp("update_date_time"));
 				post.setUploadDateTime(rs.getTimestamp("upload_date_time"));
 				posts.add(post);
@@ -55,6 +56,7 @@ public class PostDAO extends DAO {
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getString("content"));
 				post.setUserId(rs.getLong("user_id"));
+				post.setViews(rs.getLong("views"));
 				post.setUpdateDateTime(rs.getTimestamp("update_date_time"));
 				post.setUploadDateTime(rs.getTimestamp("upload_date_time"));
 				return Optional.ofNullable(post);
@@ -90,5 +92,17 @@ public class PostDAO extends DAO {
 		
 		return generatedId;
 	}
-	
+	public void updatePostViews(Long postId) {
+		con = getConnection();
+		String query = "UPDATE " + TABLE + " SET views=views+1 WHERE post_id=?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setLong(1, postId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+	}
 }

@@ -1,3 +1,6 @@
+<%@page import="com.whrjsgml.entity.Post"%>
+<%@page import="java.util.List"%>
+<%@page import="com.whrjsgml.dao.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,6 +20,9 @@
 	} else {
 		iPage = Integer.parseInt(nowPage);
 	}
+	
+	PostDAO postDAO = new PostDAO();
+	List<Post> posts = postDAO.findAllWithPaging(10, iPage);
 	%>
 	<fmt:setLocale value='<%=session.getAttribute("language")%>' />
 	<fmt:bundle basename="bundle.message">
@@ -25,7 +31,34 @@
 
 		<main>
 			
-			
+		<table>
+		<thead>
+		<tr>
+			<th>글ID</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성시간</th>
+			<th>조회수</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		<%
+			for(Post post:posts){
+		%>
+				<tr>
+					<td><%=post.getId() %></td>
+					<td><a href="Post.jsp?post_id=<%=post.getId()%>"><%=post.getTitle() %></a></td>
+					<td><%=post.getUser().getUserNickname() %></td>
+					<td><%=post.getUploadDateTime() %></td>
+					<td><%=post.getViews() %></td>
+				</tr>
+		<% 
+			}
+		%>
+		</tbody>
+		
+		</table>
 			
 		</main>
 

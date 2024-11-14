@@ -31,6 +31,7 @@
     	List<String> imagePath = images.stream()
 				.map(image->"./resources/image/"+image.getImageStoredName())
 				.toList();
+    	postDAO.updatePostViews(lPostId);
     %>
 </head>
 <body>
@@ -45,6 +46,7 @@
 				out.println("<img src=\"" + imagePath.get(i) + "\"/>");
 			}
 		%>
+		<p><%=post.getViews() %></p>
 		<p><%=post.getUpdateDateTime() %></p>
 		<p><%=post.getUploadDateTime() %></p>
 		<p><%=post.getUserId() %>
