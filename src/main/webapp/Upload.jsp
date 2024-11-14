@@ -21,7 +21,7 @@
     <fmt:bundle basename="bundle.message">
     <jsp:include page="Navbar.jsp"/>
     
-    <form id="form" name="form" method="post" enctype="multipart/form-data" action="Upload_process.jsp">
+    <form id="form" name="form" method="post" enctype="multipart/form-data" action="Upload_process.jsp" accept-charset="UTF-8">
         <input type="text" name="title" id="title" maxlength="30" placeholder="Title..."><br>
         <textarea name="content" id="content" placeholder="Content..."></textarea><br>
         <input type="file" name="file" id="file" multiple accept="image/*"><br>

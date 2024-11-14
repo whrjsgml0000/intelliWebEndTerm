@@ -17,7 +17,6 @@ String uploadPath = "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\
 int size = 1024 * 1024 * 15;
 DiskFileUpload dUpload = new DiskFileUpload();
 dUpload.setRepositoryPath(uploadPath);
-dUpload.setHeaderEncoding("UTF-8");
 List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
 	.filter(FileItem::isFormField)
@@ -27,9 +26,9 @@ String content="";
 for(int i=0;i<formFieldItems.size();i++){
 	String name = formFieldItems.get(i).getFieldName();
 	if(name.equals("title")){
-		title = formFieldItems.get(i).getString();
+		title = formFieldItems.get(i).getString("utf-8");
 	} else if (name.equals("content")){
-		content = formFieldItems.get(i).getString();
+		content = formFieldItems.get(i).getString("utf-8");
 	}
 }
 Iterator<FileItem> itemIter = list.iterator();
