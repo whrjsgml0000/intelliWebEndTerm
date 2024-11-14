@@ -3,6 +3,7 @@ package com.whrjsgml.dao;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,6 +93,7 @@ public class PostDAO extends DAO {
 		
 		return generatedId;
 	}
+	
 	public void updatePostViews(Long postId) {
 		con = getConnection();
 		String query = "UPDATE " + TABLE + " SET views=views+1 WHERE post_id=?";
@@ -104,5 +106,46 @@ public class PostDAO extends DAO {
 		} finally {
 			closeAll();
 		}
+	}
+	// TODO 본인이 작성한 글에 들어갔다면, session 에서 UserInfo 를 통해 user_id 를 비교하고 같을 경우 삭제 버튼이 추가 될 것임.
+	public void deletePostById(Long postId) {
+		con = getConnection();
+		String query = "DELETE FROM "+ TABLE + " WHERE post_id=?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setLong(1, postId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+	}
+	// TODO 메인 페이지에서 글쓴이로 검색할 때 닉네임을 검색하면 그 닉네임의 user_id를 찾아서 이 안에 넣을 것임. 
+	public List<Post> findPostByUserId(Long userId) {
+		con = getConnection();
+		String query = "SELECT * FROM " + TABLE + " WHERE user_id=? ORDER BY id DESC";
+		LinkedList<Post> posts = new LinkedList<>();
+		try {
+			ps = con.prepareStatement(query);
+			ps.setLong(1, userId);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Post post = new Post();
+				post.setId(rs.getLong("post_id"));
+				post.setTitle(rs.getString("title"));
+				post.setContent(rs.getString("content"));
+				post.setUserId(rs.getLong("user_id"));
+				post.setViews(rs.getLong("views"));
+				post.setUpdateDateTime(rs.getTimestamp("update_date_time"));
+				post.setUploadDateTime(rs.getTimestamp("upload_date_time"));
+				posts.add(post);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return posts;
 	}
 }

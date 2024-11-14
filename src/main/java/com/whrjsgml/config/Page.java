@@ -10,4 +10,5 @@ public interface Page {
 	public static final String SIGNIN = "SignIn.jsp";
 	public static final String MY = "MyPage.jsp";
 	public static final String LOGOUT = "LogOut.jsp";
+	public static final String DELETE_USER = "Delete_user.jsp";
 }

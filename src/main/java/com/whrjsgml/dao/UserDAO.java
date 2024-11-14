@@ -79,4 +79,18 @@ public class UserDAO extends DAO{
 		return Optional.ofNullable(null);
 	}
 	
+	public void deleteUserById(Long userId) {
+		con = getConnection();
+		String query = "DELETE FROM "+TABLE+" WHERE id=?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setLong(1, userId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+	}
+	
 }
