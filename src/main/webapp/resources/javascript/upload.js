@@ -11,8 +11,8 @@ let files;
 
 const uploadValidate = () => {
   files = file.files;
-  if (title.value.length < 5) {
-    alert("제목은 5글자 이상으로 만들어야 합니다.");
+  if (title.value.length < 1) {
+    alert("제목은 1글자 이상으로 만들어야 합니다.");
     return;
   }
 
@@ -24,9 +24,6 @@ const uploadValidate = () => {
   for (var f of files) {
     if (f.size >= 1024 * 1024 * 3) {
       alert("개별 파일 크기는 3MB를 넘을 수 없습니다.");
-      return;
-    } else if (!f.name.match(/(.jpg|.png|.jpeg|.webp|.gif)$/)) {
-      alert("파일에 지원하지 않는 확장자명이 존재합니다.");
       return;
     }
   }

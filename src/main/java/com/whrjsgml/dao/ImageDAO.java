@@ -30,7 +30,7 @@ public class ImageDAO extends DAO {
 	
 	public List<Image> findImageByPostId(Long postId) {
 		con = getConnection();
-		String query = "SELECT * FROM " + TABLE + " WHERE post_id=?";
+		String query = "SELECT * FROM " + TABLE + " WHERE post_id=? ORDER BY image_id DESC";
 		ArrayList<Image> images = new ArrayList<>();
 		try {
 			ps = con.prepareStatement(query);
