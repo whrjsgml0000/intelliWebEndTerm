@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS image(
 	image_id BIGINT AUTO_INCREMENT,
 	path VARCHAR(255) NOT NULL,
-	original_name VARCHAR(255) NOT NULL,
 	stored_name VARCHAR(255) NOT NULL UNIQUE,
 	post_id BIGINT NOT NULL,
 	PRIMARY KEY(image_id),

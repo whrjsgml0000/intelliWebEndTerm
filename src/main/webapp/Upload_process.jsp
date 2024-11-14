@@ -1,3 +1,6 @@
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="org.apache.commons.fileupload.DiskFileUpload"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="com.whrjsgml.dao.ImageDAO"%>
 <%@page import="com.whrjsgml.dto.InsertImageDTO"%>
 <%@page import="com.whrjsgml.dao.PostDAO"%>
@@ -5,19 +8,32 @@
 <%@page import="com.whrjsgml.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.oreilly.servlet.*" %>
-<%@ page import="com.oreilly.servlet.multipart.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 
 <%
-String uploadPath = "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image";
+//String uploadPath = "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image"; //desktop
+String uploadPath = "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image";
 int size = 1024 * 1024 * 15;
-MultipartRequest mr = new MultipartRequest(request,uploadPath,size,"UTF-8",new DefaultFileRenamePolicy());
+DiskFileUpload dUpload = new DiskFileUpload();
+dUpload.setRepositoryPath(uploadPath);
 
-String title = mr.getParameter("title");
-String content = mr.getParameter("content");
-Enumeration<String> names = mr.getFileNames();
+List<FileItem> list= dUpload.parseRequest(request);
+List<FileItem> formFieldItems = list.stream()
+	.filter(FileItem::isFormField)
+	.toList();
+String title="";
+String content="";
+for(int i=0;i<formFieldItems.size();i++){
+	String name = formFieldItems.get(i).getFieldName();
+	if(name.equals("title")){
+		title = formFieldItems.get(i).getString();
+	} else if (name.equals("content")){
+		content = formFieldItems.get(i).getString();
+	}
+}
+Iterator<FileItem> itemIter = list.iterator();
+
 User user = (User) session.getAttribute("UserInfo");
 
 InsertPostDTO insertPostDTO = new InsertPostDTO();
@@ -29,18 +45,25 @@ ImageDAO imageDAO = new ImageDAO();
 
 long generatedId = postDAO.insertPost(insertPostDTO);
 
-while(names.hasMoreElements()){
-	String name = names.nextElement();
+while(itemIter.hasNext()){
+	FileItem fileItem = itemIter.next();
 	
-	String storedName = mr.getFilesystemName(name);
-	String originalName = mr.getOriginalFileName(name);
-	
-	InsertImageDTO imageDTO = new InsertImageDTO();
-	imageDTO.setStoredName(storedName);
-	imageDTO.setOriginalName(originalName);
-	imageDTO.setPostId(generatedId);
-	
-	imageDAO.insertImage(imageDTO);
+	if(!fileItem.isFormField()){
+		InsertImageDTO imageDTO = new InsertImageDTO();
+		String storedName = fileItem.getName();
+		// 파일 중복 이름 방지
+		storedName = storedName.substring(storedName.indexOf("\\")+1, storedName.lastIndexOf(".")) 
+				+ UUID.randomUUID().toString()
+				+ storedName.substring(storedName.lastIndexOf("."));
+		// original name 다시 추가해도 될 듯 파일 저장 방식이 덮어쓰기라 UUID를 추가할 것이기 때문에 근데 필요한가?
+		imageDTO.setStoredName(storedName);
+		imageDTO.setPostId(generatedId);
+		
+		imageDAO.insertImage(imageDTO);
+		
+		File file = new File(uploadPath+"\\"+storedName);
+		fileItem.write(file);
+	}
 }
 
 response.sendRedirect("Post.jsp?post_id=" + generatedId);

@@ -12,13 +12,12 @@ public class ImageDAO extends DAO {
 	
 	public void insertImage(InsertImageDTO imageDTO) {
 		con = getConnection();
-		String query = "INSERT INTO " + TABLE + "(path,original_name,stored_name,post_id) VALUES(?,?,?,?)";
+		String query = "INSERT INTO " + TABLE + "(path,stored_name,post_id) VALUES(?,?,?)";
 		try {
 			ps = con.prepareStatement(query);
-			ps.setString(1, "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image");
-			ps.setString(2, imageDTO.getOriginalName());
-			ps.setString(3, imageDTO.getStoredName());
-			ps.setLong(4, imageDTO.getPostId());
+			ps.setString(1, "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image");
+			ps.setString(2, imageDTO.getStoredName());
+			ps.setLong(3, imageDTO.getPostId());
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -40,7 +39,6 @@ public class ImageDAO extends DAO {
 				Image image = new Image();
 				image.setId(rs.getLong("image_id"));
 				image.setImagePath(rs.getString("path"));
-				image.setImageOriginalName(rs.getString("original_name"));
 				image.setImageStoredName(rs.getString("stored_name"));
 				image.setPostId(postId);
 				
