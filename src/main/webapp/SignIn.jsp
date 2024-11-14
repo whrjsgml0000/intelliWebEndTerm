@@ -9,14 +9,20 @@
     <title>로그인</title>
 </head>
 <body>
-	<fmt:setLocale value='<%=request.getParameter("language") %>'/>
+	<%
+	if(session.getAttribute("user_id") != null){
+		
+	}
+	%>
+	
+	<fmt:setLocale value='<%=session.getAttribute("language") %>'/>
 	<fmt:bundle basename="bundle.message">
 	<jsp:include page="Navbar.jsp"/>
 	
-    <h2>로그인</h2>
-    <form method="post" action="MainPage.jsp">
+    <h2><fmt:message key="logIn"/></h2>
+    <form method="post" action="SignIn_process.jsp">
         <label><fmt:message key="id"/> : <input id="id" name="id" type="text" placeholder="id"></label><br>
-        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="passwd"></label><br>
+        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="password"></label><br>
         <input id="signIn" type="submit" value='<fmt:message key="logIn"/>'>
     </form>
     

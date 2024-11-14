@@ -1,19 +1,9 @@
-package com.whrjsgml.entity;
+package com.whrjsgml.dto;
 
-import java.sql.Timestamp;
-
-public class User {
-	private Long id;
+public class InsertUserDTO {
 	private String userId;
 	private String userPass;
 	private String userNickname;
-	private Timestamp createAt;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -32,12 +22,5 @@ public class User {
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
 	}
-	public Timestamp getCreateAt() {
-		return createAt;
-	}
-	public void setCreateAt(Timestamp createAt) {
-		this.createAt = createAt;
-	}
-	
 	
 }
