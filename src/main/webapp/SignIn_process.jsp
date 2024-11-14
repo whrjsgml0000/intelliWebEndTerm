@@ -1,3 +1,5 @@
+<%@page import="com.whrjsgml.config.Session"%>
+<%@page import="com.whrjsgml.config.Page"%>
 <%@page import="com.whrjsgml.entity.User"%>
 <%@page import="java.util.Optional"%>
 <%@page import="com.whrjsgml.dao.UserDAO"%>
@@ -10,16 +12,16 @@
 	UserDAO userDAO = new UserDAO();
 	Optional<User> opUser = userDAO.findByUserId(id);
 	if(opUser.isEmpty()){
-		response.sendRedirect("SignIn.jsp");
+		response.sendRedirect(Page.SIGNIN);
 		return;
 	}
 	User user = opUser.get();
 	
 	if(!user.getUserPass().equals(passwd)){
-		response.sendRedirect("SignIn.jsp");
+		response.sendRedirect(Page.SIGNIN);
 		return;
 	}
 	
-	session.setAttribute("UserInfo", user);
-	response.sendRedirect("MainPage.jsp");
+	session.setAttribute(Session.USERINFO, user);
+	response.sendRedirect(Page.MAIN);
 %>

@@ -1,3 +1,5 @@
+<%@page import="com.whrjsgml.config.Page"%>
+<%@page import="com.whrjsgml.config.Session"%>
 <%@page import="com.whrjsgml.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,15 +13,15 @@
 </head>
 <body>
 	<%
-	User user = (User)session.getAttribute("UserInfo");
+	User user = (User)session.getAttribute(Session.USERINFO);
 	if(user == null){
-		response.sendRedirect("MainPage.jsp");
+		response.sendRedirect(Page.MAIN);
 		return;
 	}
 	%>
-    <fmt:setLocale value='<%=session.getAttribute("language") %>'/>
+    <fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>
     <fmt:bundle basename="bundle.message">
-    <jsp:include page="Navbar.jsp"/>
+    <jsp:include page="<%=Page.NAVBAR %>"/>
     
     <form id="form" name="form" method="post" enctype="multipart/form-data" action="Upload_process.jsp" accept-charset="UTF-8">
         <input type="text" name="title" id="title" maxlength="30" placeholder="Title..."><br>
@@ -28,7 +30,7 @@
         <input id="button" type="button" value='<fmt:message key="upload"/>' onclick="uploadValidate()">
     </form>
     
-    <jsp:include page="Footer.jsp"/>
+    <jsp:include page="<%=Page.FOOTER %>"/>
     </fmt:bundle>
     <script src="resources/javascript/upload.js"></script>
 </body>

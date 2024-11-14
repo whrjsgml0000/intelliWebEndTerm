@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.whrjsgml.config.FileSetting;
 import com.whrjsgml.dto.InsertImageDTO;
 import com.whrjsgml.entity.Image;
 
@@ -15,7 +16,7 @@ public class ImageDAO extends DAO {
 		String query = "INSERT INTO " + TABLE + "(path,stored_name,post_id) VALUES(?,?,?)";
 		try {
 			ps = con.prepareStatement(query);
-			ps.setString(1, "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image");
+			ps.setString(1, FileSetting.IMAGE_UPLOAD_PATH);
 			ps.setString(2, imageDTO.getStoredName());
 			ps.setLong(3, imageDTO.getPostId());
 			

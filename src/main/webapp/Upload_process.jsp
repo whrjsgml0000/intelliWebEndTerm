@@ -1,3 +1,6 @@
+<%@page import="com.whrjsgml.config.Page"%>
+<%@page import="com.whrjsgml.config.Session"%>
+<%@page import="com.whrjsgml.config.FileSetting"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="org.apache.commons.fileupload.DiskFileUpload"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
@@ -12,11 +15,9 @@
 <%@ page import="java.io.*" %>
 
 <%
-//String uploadPath = "C:\\Users\\CGH\\eclipse-workspace\\EndTerm\\src\\main\\webapp\\resources\\image"; //desktop
-String uploadPath = "C:\\Users\\whrjs\\Desktop\\intelligent\\IntelliWebEndTerm\\src\\main\\webapp\\resources\\image";
-int size = 1024 * 1024 * 15;
 DiskFileUpload dUpload = new DiskFileUpload();
-dUpload.setRepositoryPath(uploadPath);
+dUpload.setRepositoryPath(FileSetting.IMAGE_UPLOAD_PATH);
+dUpload.setFileSizeMax(FileSetting.UPLOAD_MAX_SIZE);
 List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
 	.filter(FileItem::isFormField)
@@ -33,7 +34,7 @@ for(int i=0;i<formFieldItems.size();i++){
 }
 Iterator<FileItem> itemIter = list.iterator();
 
-User user = (User) session.getAttribute("UserInfo");
+User user = (User) session.getAttribute(Session.USERINFO);
 
 InsertPostDTO insertPostDTO = new InsertPostDTO();
 insertPostDTO.setTitle(title);
@@ -52,17 +53,17 @@ while(itemIter.hasNext()){
 		String storedName = fileItem.getName();
 		// 파일 중복 이름 방지
 		storedName = storedName.substring(storedName.indexOf("\\")+1, storedName.lastIndexOf(".")) 
-				+ UUID.randomUUID().toString()
-				+ storedName.substring(storedName.lastIndexOf("."));
+		+ UUID.randomUUID().toString()
+		+ storedName.substring(storedName.lastIndexOf("."));
 		imageDTO.setStoredName(storedName);
 		imageDTO.setPostId(generatedId);
 		
 		imageDAO.insertImage(imageDTO);
 		
-		File file = new File(uploadPath+"\\"+storedName);
+		File file = new File(FileSetting.IMAGE_UPLOAD_PATH+"\\"+storedName);
 		fileItem.write(file);
 	}
 }
 
-response.sendRedirect("Post.jsp?post_id=" + generatedId);
+response.sendRedirect(Page.POST + "?post_id=" + generatedId);
 %>
