@@ -22,7 +22,7 @@
 	<fmt:setBundle basename="bundle.message"/>
 	<header>
 	    <div class="container">
-	    	<a href="?language=ko">한국어</a>|<a href="?language=en">English</a>
+	    	<a href="Set_language.jsp?language=ko">한국어</a>|<a href="Set_language.jsp?language=en">English</a>
 	    	<a href="<%=Page.MAIN%>"><fmt:message key="main"/></a>
 	    	<a href="<%=Page.UPLOAD%>"><fmt:message key="upload"/></a>
 	    	<%
