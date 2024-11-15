@@ -26,9 +26,9 @@
     <div class="container mt-5">
     
 	    <form id="form" name="form" method="post" enctype="multipart/form-data" action="Upload_process.jsp" accept-charset="UTF-8">
-	        <label>제목 : <input type="text" name="title" id="title" maxlength="30" placeholder="Title..." class="form-control"></label><br>
-	        <label>내용 : <textarea name="content" id="content" placeholder="Content..." class="form-control"></textarea></label><br>
-	        <label>이미지 : <input type="file" name="file" id="file" multiple accept="image/*" class="form-control"></label><br>
+	        <label><fmt:message key="title"/> : <input type="text" name="title" id="title" maxlength="30" placeholder="Title..." class="form-control"></label><br>
+	        <label><fmt:message key="content"/> : <textarea name="content" id="content" placeholder="Content..." class="form-control"></textarea></label><br>
+	        <label><fmt:message key="image"/> : <input type="file" name="file" id="file" multiple accept="image/*" class="form-control"></label><br>
 	        <input id="button" type="button" value='<fmt:message key="upload"/>' class="btn btn-primary" onclick="uploadValidate()">
 	    </form>
     </div>

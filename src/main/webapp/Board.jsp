@@ -45,11 +45,11 @@
     			<col style="width: 6%;">
 				<thead>
 				<tr>
-					<th>글ID</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성시간</th>
-					<th>조회수</th>
+					<th><fmt:message key="postId"/></th>
+					<th><fmt:message key="title"/></th>
+					<th><fmt:message key="writer"/></th>
+					<th><fmt:message key="uploadTime"/></th>
+					<th><fmt:message key="views"/></th>
 				</tr>
 				</thead>
 				<tbody>

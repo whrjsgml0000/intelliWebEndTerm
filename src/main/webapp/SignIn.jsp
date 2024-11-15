@@ -22,7 +22,7 @@
 	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>
 	<fmt:bundle basename="bundle.message">
 	<jsp:include page="<%=Page.NAVBAR %>"/>
-	<div class="container">
+	<div class="container mt-5">
 		<div class="row g-5">
 		    <h2><fmt:message key="logIn"/></h2>
 		    

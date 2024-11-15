@@ -1,3 +1,4 @@
+<%@page import="com.whrjsgml.config.Session"%>
 <%@page import="com.whrjsgml.config.FileSetting"%>
 <%@page import="com.whrjsgml.entity.Image"%>
 <%@page import="java.util.List"%>
@@ -8,6 +9,7 @@
 <%@page import="com.whrjsgml.config.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,8 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 </head>
 <body>
 	<jsp:include page="<%=Page.NAVBAR %>"/>
-	
+	<fmt:setLocale value="<%=session.getAttribute(Session.LANGUAGE) %>"/>
+	<fmt:bundle basename="bundle.message">
 	<div class="container mt-5">
 		<main>
 		<%
@@ -38,9 +41,9 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 				image = images.get(0);
 			}
 		%>
-			<p>오늘의 인기 게시글 입니다.</p>
+			<p><fmt:message key="todayBest"/></p>
 			<a href="<%=Page.POST%>?post_id=<%=post.getPostId()%>" class="btn btn-primary">
-			<p>제목 : <%=post.getTitle() %></p>
+			<p><fmt:message key="title"/> : <%=post.getTitle() %></p>
 			<img alt="이미지가 없는 게시글입니다." src="<%=FileSetting.IMAGE_RELATIVE_PATH %><%=image!=null ? image.getImageStoredName():""%>" width="500">
 			</a>
 		<%
@@ -48,7 +51,7 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 		%>
 		</main>
 	</div>
-	
+	</fmt:bundle>
 	<jsp:include page="<%=Page.FOOTER %>"/>
 </body>
 </html>
