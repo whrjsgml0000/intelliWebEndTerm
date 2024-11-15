@@ -1,3 +1,4 @@
+<%@page import="com.whrjsgml.config.Page"%>
 <%@page import="com.whrjsgml.entity.User"%>
 <%@page import="com.whrjsgml.config.Session"%>
 <%@page import="com.whrjsgml.entity.Comment"%>
@@ -17,6 +18,10 @@
 	CommentDAO commentDAO = new CommentDAO();
 	List<Comment> comments = commentDAO.findCommentByPostId(lPostId);
 	User user = (User)session.getAttribute(Session.USERINFO);
+	if(user == null){
+		response.sendRedirect(Page.MAIN);
+		return;
+	}
 %>
 </head>
 <body>
@@ -53,7 +58,7 @@
 			<td><%=comment.getComment() %></td>
 			<td><%=comment.getUser().getUserNickname() %></td>
 			<td><%=comment.getCreatedAt() %></td>
-			<td><%=comment.getUser().getId() == user.getId() ? "<a href=\"\">삭제</a>":"" %></td>
+			<td><%=comment.getUser().getId() == user.getId() ? "<a href=\"Delete_comment.jsp?comment_id="+comment.getCommentId()+"\">삭제</a>":"" %></td>
 		</tr>
 	<%
 	}

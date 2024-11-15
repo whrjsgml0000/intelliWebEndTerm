@@ -52,4 +52,18 @@ public class CommentDAO extends DAO{
 		}
 		return comments;
 	}
+	
+	public void deleteCommentByCommentId(Long commentId) {
+		con = getConnection();
+		String query = "DELETE FROM " + TABLE + " WHERE comment_id=?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setLong(1, commentId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+	}
 }
