@@ -37,9 +37,9 @@
 	<p>댓글</p>
 	<table class="table table-bordered table-striped">
 	<colgroup>
-	    <col style="width: 65%;"> <!-- 첫 번째 열 40% -->
-	    <col style="width: 15%;"> <!-- 두 번째 열 30% -->
-	    <col style="width: 15%;"> <!-- 세 번째 열 30% -->
+	    <col style="width: 65%;">
+	    <col style="width: 15%;">
+	    <col style="width: 15%;">
 	    <col style="width: 5%;">
   </colgroup>
 	<thead>

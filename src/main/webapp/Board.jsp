@@ -37,7 +37,12 @@
 			<h2><fmt:message key="board"/></h2>
 	
 			<main>
-				<table class="table table-bordered table-striped">
+				<table class="table table-bordered table-striped text-center">
+				<col style="width: 10%;">
+    			<col style="width: 52%;">
+    			<col style="width: 15%;">
+    			<col style="width: 17%;">
+    			<col style="width: 6%;">
 				<thead>
 				<tr>
 					<th>글ID</th>
