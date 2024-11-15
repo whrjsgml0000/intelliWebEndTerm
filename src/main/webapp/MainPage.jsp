@@ -64,7 +64,7 @@
 		</tbody>
 		
 		</table>
-			<a href="?page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"":""%>>이전 페이지</a>
+			<a href="?page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"" : ""%>>이전 페이지</a>
 		<%
 		if(iPage < maxPage){
 		%>
