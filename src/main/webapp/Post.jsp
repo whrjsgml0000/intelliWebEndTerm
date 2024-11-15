@@ -1,3 +1,5 @@
+<%@page import="com.whrjsgml.config.Session"%>
+<%@page import="com.whrjsgml.entity.User"%>
 <%@page import="com.whrjsgml.config.Page"%>
 <%@page import="com.whrjsgml.config.FileSetting"%>
 <%@page import="com.whrjsgml.entity.Image"%>
@@ -16,6 +18,11 @@
     <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
     <title>게시물</title>
     <%
+    User user = (User) session.getAttribute(Session.USERINFO);
+    if(user == null){
+    	response.sendRedirect(request.getHeader("Referer"));
+    	return;
+    }
     String postId = request.getParameter("post_id");
    	if(postId==null || postId.isBlank()){
    		response.sendRedirect(Page.MAIN);

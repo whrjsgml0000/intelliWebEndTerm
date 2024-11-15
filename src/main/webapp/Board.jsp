@@ -25,7 +25,7 @@
 	}
 	
 	PostDAO postDAO = new PostDAO();
-	int defalutPostViewCount = 10;
+	int defalutPostViewCount = 15;
 	List<Post> posts = postDAO.findAllWithPaging(defalutPostViewCount, iPage);
 	long count = postDAO.getPostCount();
 	long maxPage = count % defalutPostViewCount == 0 ? count / defalutPostViewCount : count / defalutPostViewCount + 1;
@@ -68,11 +68,13 @@
 				%>
 				</tbody>
 				</table>
-					<a href="?page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"" : ""%>>이전 페이지</a>
+				<div class="d-flex justify-content-between">
+					<a href="?page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"" : ""%> class="btn btn-primary"><fmt:message key="prevPage"/></a>
 				<%
 				if(iPage < maxPage){
 				%>
-					<a href="?page=<%=iPage+1%>">다음 페이지</a>
+					<a href="?page=<%=iPage+1%>" class="btn btn-primary"><fmt:message key="nextPage"/></a>
+				</div>
 				<%
 				}
 				%>
