@@ -171,7 +171,7 @@ public class PostDAO extends DAO {
 	}
 	
 	public Optional<Post> findPostByHighestViewToday(){
-		Timestamp t = Timestamp.valueOf(LocalDate.now().toString());
+		Timestamp t = Timestamp.valueOf(LocalDate.now().atStartOfDay());
 		con = getConnection();
 		String query = "SELECT * FROM " + TABLE + " WHERE upload_date_time > ? ORDER BY views DESC LIMIT 1";
 		try {
