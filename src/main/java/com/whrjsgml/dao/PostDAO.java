@@ -187,13 +187,13 @@ public class PostDAO extends DAO {
 				post.setViews(rs.getLong("views"));
 				post.setUpdateDateTime(rs.getTimestamp("update_date_time"));
 				post.setUploadDateTime(rs.getTimestamp("upload_date_time"));
+				return Optional.ofNullable(post);
 			}
-			return Optional.ofNullable(post);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			closeAll();
 		}
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 }

@@ -22,15 +22,14 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 <body>
 	<jsp:include page="<%=Page.NAVBAR %>"/>
 	
-	<div class="container">
+	<div class="container mt-5">
 		<main>
 		<%
 		if(opPost.isEmpty()){
 		%>
 			<a href="<%=Page.BOARD%>" class="btn btn-primary">오늘의 첫 게시글을 작성해보세요!</a>
 		<%		
-		}
-		else {
+		} else {
 			Post post = opPost.get();
 			ImageDAO imageDAO = new ImageDAO();
 			List<Image> images = imageDAO.findImageByPostId(post.getPostId());
