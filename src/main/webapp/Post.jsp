@@ -39,23 +39,25 @@
 </head>
 <body>
     <jsp:include page="<%=Page.NAVBAR %>"/>
-	<jsp:include page="Post_top.jsp?post_id=<%=postId %>"/>
-	
-	<main>
-		<h2><%=post.getTitle() %></h2>
-		<p><%=post.getContent() %></p>
-		<%
+    <div class="container mt-5">
+		<jsp:include page="Post_top.jsp?post_id=<%=postId %>"/>
+		<main>
+			<h2><%=post.getTitle() %></h2>
+			<hr>
+			<p><%=post.getContent() %></p>
+			<%
 			for(int i=0;i<imagePath.size();i++){
 				out.println("<img src=\"" + imagePath.get(i) + "\"/>");
 			}
-		%>
-		<p><%=post.getViews() %></p>
-		<p><%=post.getUpdateDateTime() %></p>
-		<p><%=post.getUploadDateTime() %></p>
-		<p><%=post.getUserId() %>
-	</main>
-	
-	<jsp:include page="Post_bottom.jsp?post_id=<%=postId %>"/>
+			%>
+			<p><%=post.getViews() %></p>
+			<p><%=post.getUpdateDateTime() %></p>
+			<p><%=post.getUploadDateTime() %></p>
+			<p><%=post.getUserId() %>
+		</main>
+		<hr>
+		<jsp:include page="Post_bottom.jsp?post_id=<%=postId %>"/>
+	</div>
     <jsp:include page="<%=Page.FOOTER %>"/>
 </body>
 </html>

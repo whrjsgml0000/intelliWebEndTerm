@@ -22,31 +22,33 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 <body>
 	<jsp:include page="<%=Page.NAVBAR %>"/>
 	
-	<main>
-	<%
-	if(opPost.isEmpty()){
-	%>
-		<a href="<%=Page.BOARD%>" class="">오늘의 첫 게시글을 작성해보세요!</a>
-	<%		
-	}
-	else {
-		Post post = opPost.get();
-		ImageDAO imageDAO = new ImageDAO();
-		List<Image> images = imageDAO.findImageByPostId(post.getPostId());
-		Image image = null;
-		if(!images.isEmpty()){
-			image = images.get(0);
+	<div class="container">
+		<main>
+		<%
+		if(opPost.isEmpty()){
+		%>
+			<a href="<%=Page.BOARD%>" class="btn btn-primary">오늘의 첫 게시글을 작성해보세요!</a>
+		<%		
 		}
-	%>
-		<p>오늘의 인기 게시글 입니다.</p>
-		<a href="<%=Page.POST%>?post_id=<%=post.getPostId()%>">
-		<p>제목 : <%=post.getTitle() %></p>
-		<img alt="이미지가 없는 게시글입니다." src="<%=FileSetting.IMAGE_RELATIVE_PATH %><%=image!=null ? image.getImageStoredName():""%>" width="500">
-		</a>
-	<%
-	}
-	%>
-	</main>
+		else {
+			Post post = opPost.get();
+			ImageDAO imageDAO = new ImageDAO();
+			List<Image> images = imageDAO.findImageByPostId(post.getPostId());
+			Image image = null;
+			if(!images.isEmpty()){
+				image = images.get(0);
+			}
+		%>
+			<p>오늘의 인기 게시글 입니다.</p>
+			<a href="<%=Page.POST%>?post_id=<%=post.getPostId()%>" class="btn btn-primary">
+			<p>제목 : <%=post.getTitle() %></p>
+			<img alt="이미지가 없는 게시글입니다." src="<%=FileSetting.IMAGE_RELATIVE_PATH %><%=image!=null ? image.getImageStoredName():""%>" width="500">
+			</a>
+		<%
+		}
+		%>
+		</main>
+	</div>
 	
 	<jsp:include page="<%=Page.FOOTER %>"/>
 </body>
