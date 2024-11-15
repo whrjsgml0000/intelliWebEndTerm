@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
     <title>로그인</title>
 </head>
 <body>
@@ -21,14 +22,17 @@
 	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>
 	<fmt:bundle basename="bundle.message">
 	<jsp:include page="<%=Page.NAVBAR %>"/>
-	
-    <h2><fmt:message key="logIn"/></h2>
-    <form method="post" action="SignIn_process.jsp">
-        <label><fmt:message key="id"/> : <input id="id" name="id" type="text" placeholder="id"></label><br>
-        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="password"></label><br>
-        <input id="signIn" type="submit" value='<fmt:message key="logIn"/>'>
-    </form>
-    
+	<div class="container mt-5">
+		<div class="row g-5">
+		    <h2><fmt:message key="logIn"/></h2>
+		    
+		    <form method="post" action="SignIn_process.jsp">
+		        <label><fmt:message key="id"/> : <input id="id" name="id" type="text" placeholder="id" class="form-control"></label><br>
+		        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" placeholder="password" class="form-control"></label><br>
+		        <input id="signIn" type="submit" value='<fmt:message key="logIn"/>' class="btn btn-primary">
+		    </form>
+	    </div>
+    </div>
     <jsp:include page="<%=Page.FOOTER %>"/>
     </fmt:bundle>
 </body>

@@ -7,7 +7,7 @@ import com.whrjsgml.dao.UserDAO;
 import com.whrjsgml.entity.Image;
 
 public class Post {
-	private Long id;
+	private Long postId;
 	private String title;
 	private Long userId;
 	private String content;
@@ -28,11 +28,11 @@ public class Post {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public Long getId() {
-		return id;
+	public Long getPostId() {
+		return postId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setPostId(Long postId) {
+		this.postId = postId;
 	}
 	public String getTitle() {
 		return title;

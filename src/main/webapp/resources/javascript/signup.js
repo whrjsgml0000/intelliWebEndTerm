@@ -11,11 +11,11 @@ const validate = () => {
   /** @type {HTMLFormElement} */
   let signupForm = document.getElementById("signupForm");
 
-  if (!id.value.match(/[a-zA-Z0-9]{6,12}/)) {
-    alert(`id는 영어와 숫자로 6~12자리 구성이어야 합니다.`);
+  if (!id.value.match(/[a-zA-Z0-9]{4,12}/)) {
+    alert(`id는 영어와 숫자로 4~12자리 구성이어야 합니다.`);
     id.focus();
-  } else if (!passwd.value.match(/[a-zA-Z0-9]{8,12}/)) {
-    alert(`비밀번호는 영어와 숫자로 8~12자리 구성이어야 합니다.`);
+  } else if (!passwd.value.match(/[a-zA-Z0-9]{4,12}/)) {
+    alert(`비밀번호는 영어와 숫자로 4~12자리 구성이어야 합니다.`);
     passwd.focus();
     passwd.value = "";
     passwdCheck.value = "";
