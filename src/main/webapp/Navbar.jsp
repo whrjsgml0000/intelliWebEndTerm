@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
     <title>Navbar</title>
 </head>
 <body>
@@ -20,23 +21,30 @@
 	%>
 	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>
 	<fmt:setBundle basename="bundle.message"/>
-	<header>
+	<header class="p-3 text-bg-dark">
 	    <div class="container">
-	    	<a href="Set_language.jsp?language=ko">한국어</a>|<a href="Set_language.jsp?language=en">English</a>
-	    	<a href="<%=Page.MAIN%>"><fmt:message key="main"/></a>
-	    	<a href="<%=Page.UPLOAD%>"><fmt:message key="upload"/></a>
-	    	<%
-	    	User user = (User)session.getAttribute(Session.USERINFO);
-	    	if(user == null){
-	    	%>
-	        <a href="<%=Page.SIGNIN%>"><fmt:message key="logIn"/></a>
-	        <a href="<%=Page.SIGNUP%>"><fmt:message key="signUp"/></a>
-	        <%
-	        return;
-	        } 
-	        %>
-	        <a href="<%=Page.LOGOUT%>"><fmt:message key="logOut"/></a>
-	        <a href="<%=Page.MY%>"><fmt:message key="myPage"/></a>
+	    	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+	    		<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+			    	<li><a href="Set_language.jsp?language=ko" class="nav-link px-2 text-white">한국어</a></li>
+			    	<li><a href="Set_language.jsp?language=en" class="nav-link px-2 text-white">English</a></li>
+			    	<li><a href="<%=Page.MAIN%>" class="nav-link px-2 text-white"><fmt:message key="main"/></a></li>
+			    	<li><a href="<%=Page.UPLOAD%>" class="nav-link px-2 text-white"><fmt:message key="upload"/></a></li>
+			    </ul>
+		    	<%
+		    	User user = (User)session.getAttribute(Session.USERINFO);
+		    	if(user == null){
+		    	%>
+		        <a href="<%=Page.SIGNIN%>" class="btn btn-outline-light me-2"><fmt:message key="logIn"/></a>
+		        <a href="<%=Page.SIGNUP%>" class="btn btn-warning"><fmt:message key="signUp"/></a>
+		        <%
+		        } else {
+		        %>
+		        <a href="<%=Page.LOGOUT%>" class="nav-link px-2 text-white"><fmt:message key="logOut"/></a>
+		        <a href="<%=Page.MY%>" class="nav-link px-2 text-white"><fmt:message key="myPage"/></a>
+		        <%
+		        }
+		        %>
+	        </div>
 	    </div>
     </header>
 </body>

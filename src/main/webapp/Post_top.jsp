@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <title>Insert title here</title>
 <%
 	String postId = request.getParameter("post_id");
