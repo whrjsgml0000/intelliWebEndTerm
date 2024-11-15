@@ -18,7 +18,7 @@ public class PostDAO extends DAO {
 	
 	public List<Post> findPostWithSearchAndPaging(String search, int limit, int nowPage){
 		con = getConnection();
-		String query = "SELECT * FROM "+ TABLE + " WHERE title LIKE ? OR content LIKE ? ORDER BY upload_date_time DESC LIMIT ? OFFSET ?";
+		String query = "SELECT * FROM " + TABLE + " WHERE title LIKE ? OR content LIKE ? ORDER BY upload_date_time DESC LIMIT ? OFFSET ?";
 		ArrayList<Post> posts = new ArrayList<Post>();
 		int offset = (nowPage-1) * limit;
 		try {
@@ -112,7 +112,7 @@ public class PostDAO extends DAO {
 			closeAll();
 		}
 	}
-	// TODO 본인이 작성한 글에 들어갔다면, session 에서 UserInfo 를 통해 user_id 를 비교하고 같을 경우 삭제 버튼이 추가 될 것임.
+
 	public void deletePostById(Long postId) {
 		con = getConnection();
 		String query = "DELETE FROM "+ TABLE + " WHERE post_id=?";
@@ -126,7 +126,7 @@ public class PostDAO extends DAO {
 			closeAll();
 		}
 	}
-	// TODO 메인 페이지에서 글쓴이로 검색할 때 닉네임을 검색하면 그 닉네임의 user_id를 찾아서 이 안에 넣을 것임. 
+
 	public List<Post> findPostByUserId(Long userId) {
 		con = getConnection();
 		String query = "SELECT * FROM " + TABLE + " WHERE user_id=? ORDER BY id DESC";
