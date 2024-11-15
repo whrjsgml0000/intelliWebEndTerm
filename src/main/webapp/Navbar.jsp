@@ -15,7 +15,7 @@
 	<%
 	session.setMaxInactiveInterval(60*30);
 	String language = (String) request.getParameter(Session.LANGUAGE);
-	if(language !=null)
+	if(language != null)
 		session.setAttribute(Session.LANGUAGE, language);
 	%>
 	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE) %>'/>

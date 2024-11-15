@@ -16,24 +16,24 @@
     <title>게시물</title>
     <%
     String postId = request.getParameter("post_id");
-        	if(postId==null || postId.isBlank()){
-        		response.sendRedirect(Page.MAIN);
-        	}
-        	long lPostId = Long.parseLong(postId);
-        	PostDAO postDAO = new PostDAO();
-        	Optional<Post> opPost = postDAO.findPostById(lPostId);
-        	if(opPost.isEmpty()){
-        		response.sendRedirect(Page.MAIN);
-        		return;
-        	}
-        	Post post = opPost.get();
-        	
-        	ImageDAO imageDAO = new ImageDAO();
-        	List<Image> images = imageDAO.findImageByPostId(lPostId);
-        	List<String> imagePath = images.stream()
-    			.map(image->FileSetting.IMAGE_RELATIVE_PATH + image.getImageStoredName())
-    			.toList();
-        	postDAO.updatePostViews(lPostId);
+   	if(postId==null || postId.isBlank()){
+   		response.sendRedirect(Page.MAIN);
+   	}
+   	long lPostId = Long.parseLong(postId);
+   	PostDAO postDAO = new PostDAO();
+   	Optional<Post> opPost = postDAO.findPostById(lPostId);
+   	if(opPost.isEmpty()){
+   		response.sendRedirect(Page.MAIN);
+   		return;
+   	}
+   	Post post = opPost.get();
+   	
+   	ImageDAO imageDAO = new ImageDAO();
+   	List<Image> images = imageDAO.findImageByPostId(lPostId);
+   	List<String> imagePath = images.stream()
+		.map(image->FileSetting.IMAGE_RELATIVE_PATH + image.getImageStoredName())
+		.toList();
+   	postDAO.updatePostViews(lPostId);
     %>
 </head>
 <body>

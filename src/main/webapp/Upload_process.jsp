@@ -22,9 +22,9 @@ List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
 	.filter(FileItem::isFormField)
 	.toList();
-String title="";
-String content="";
-for(int i=0;i<formFieldItems.size();i++){
+String title = "";
+String content = "";
+for(int i=0; i<formFieldItems.size(); i++){
 	String name = formFieldItems.get(i).getFieldName();
 	if(name.equals("title")){
 		title = formFieldItems.get(i).getString("utf-8");
@@ -51,8 +51,11 @@ while(itemIter.hasNext()){
 	if(!fileItem.isFormField()){
 		InsertImageDTO imageDTO = new InsertImageDTO();
 		String storedName = fileItem.getName();
+		if(storedName.isBlank()){
+			continue;
+		}
 		// 파일 중복 이름 방지
-		storedName = storedName.substring(storedName.indexOf("\\")+1, storedName.lastIndexOf(".")) 
+		storedName = storedName.substring(storedName.indexOf("\\") + 1, storedName.lastIndexOf(".")) 
 		+ UUID.randomUUID().toString()
 		+ storedName.substring(storedName.lastIndexOf("."));
 		imageDTO.setStoredName(storedName);
@@ -60,7 +63,7 @@ while(itemIter.hasNext()){
 		
 		imageDAO.insertImage(imageDTO);
 		
-		File file = new File(FileSetting.IMAGE_UPLOAD_PATH+"\\"+storedName);
+		File file = new File(FileSetting.IMAGE_UPLOAD_PATH + "\\" + storedName);
 		fileItem.write(file);
 	}
 }
