@@ -35,6 +35,12 @@
 			    	<li><a href="Set_language.jsp?language=en" class="nav-link px-2 text-white">English</a></li>
 			    	<li><a href="<%=Page.BOARD%>" class="nav-link px-2 text-white"><fmt:message key="board"/></a></li>
 			    	<li><a href="<%=Page.UPLOAD%>" class="nav-link px-2 text-white"><fmt:message key="upload"/></a></li>
+			    	<li>
+				    	<form name="searchForm" action="<%=Page.BOARD%>" method="get">
+				    		<input type="text" name="search" placeholder="search..." class="form-control">
+				    		<input type="submit" value="검색" style="display:none">
+				    	</form>
+			    	</li>
 			    </ul>
 		    	<%
 		    	User user = (User)session.getAttribute(Session.USERINFO);

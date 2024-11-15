@@ -16,15 +16,17 @@ import com.whrjsgml.entity.Post;
 public class PostDAO extends DAO {
 	private static final String TABLE = "post";
 	
-	public List<Post> findAllWithPaging(int limit, int nowPage){
+	public List<Post> findPostWithSearchAndPaging(String search, int limit, int nowPage){
 		con = getConnection();
-		String query = "SELECT * FROM "+ TABLE + " ORDER BY upload_date_time DESC LIMIT ? OFFSET ?";
+		String query = "SELECT * FROM "+ TABLE + " WHERE title LIKE ? OR content LIKE ? ORDER BY upload_date_time DESC LIMIT ? OFFSET ?";
 		ArrayList<Post> posts = new ArrayList<Post>();
 		int offset = (nowPage-1) * limit;
 		try {
 			ps = con.prepareStatement(query);
-			ps.setInt(1, limit);
-			ps.setInt(2, offset);
+			ps.setString(1, "%"+search+"%");
+			ps.setString(2, "%"+search+"%");
+			ps.setInt(3, limit);
+			ps.setInt(4, offset);
 			
 			rs = ps.executeQuery();
 			
@@ -152,12 +154,14 @@ public class PostDAO extends DAO {
 		return posts;
 	}
 	
-	public Long getPostCount() {
+	public Long getPostCount(String search) {
 		con = getConnection();
-		String query = "SELECT COUNT(*) FROM "+TABLE;
+		String query = "SELECT COUNT(*) FROM " + TABLE + " WHERE title LIKE ? OR content LIKE ?";
 		Long count = 0L;
 		try {
 			ps = con.prepareStatement(query);
+			ps.setString(1, "%" + search + "%");
+			ps.setString(2, "%" + search + "%");
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				count = rs.getLong("count(*)");

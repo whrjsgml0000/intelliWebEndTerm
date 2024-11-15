@@ -24,10 +24,15 @@
 		iPage = Integer.parseInt(nowPage);
 	}
 	
+	String search = request.getParameter("search");
+	if(search==null||search.isBlank()){
+		search="";
+	}
+	
 	PostDAO postDAO = new PostDAO();
 	int defalutPostViewCount = 15;
-	List<Post> posts = postDAO.findAllWithPaging(defalutPostViewCount, iPage);
-	long count = postDAO.getPostCount();
+	List<Post> posts = postDAO.findPostWithSearchAndPaging(search, defalutPostViewCount, iPage);
+	long count = postDAO.getPostCount(search);
 	long maxPage = count % defalutPostViewCount == 0 ? count / defalutPostViewCount : count / defalutPostViewCount + 1;
 	%>
 	<fmt:setLocale value='<%=session.getAttribute(Session.LANGUAGE)%>' />
@@ -69,11 +74,11 @@
 				</tbody>
 				</table>
 				<div class="d-flex justify-content-between">
-					<a href="?page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"" : ""%> class="btn btn-primary"><fmt:message key="prevPage"/></a>
+					<a href="?search=<%=search %>&page=<%=iPage-1%>" <%=iPage==1 ? "style=\"visibility: hidden;\"" : ""%> class="btn btn-primary"><fmt:message key="prevPage"/></a>
 				<%
 				if(iPage < maxPage){
 				%>
-					<a href="?page=<%=iPage+1%>" class="btn btn-primary"><fmt:message key="nextPage"/></a>
+					<a href="?search=<%=search %>&page=<%=iPage+1%>" class="btn btn-primary"><fmt:message key="nextPage"/></a>
 				</div>
 				<%
 				}
