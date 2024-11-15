@@ -39,8 +39,8 @@
 		        <%
 		        } else {
 		        %>
-		        <a href="<%=Page.LOGOUT%>" class="nav-link px-2 text-white"><fmt:message key="logOut"/></a>
-		        <a href="<%=Page.MY%>" class="nav-link px-2 text-white"><fmt:message key="myPage"/></a>
+		        <a href="<%=Page.LOGOUT%>" class="btn btn-outline-light me-2"><fmt:message key="logOut"/></a>
+		        <a href="<%=Page.MY%>" class="btn btn-warning"><fmt:message key="myPage"/></a>
 		        <%
 		        }
 		        %>

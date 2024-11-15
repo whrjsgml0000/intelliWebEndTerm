@@ -2,6 +2,9 @@ package com.whrjsgml.dao;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -165,5 +168,32 @@ public class PostDAO extends DAO {
 			closeAll();
 		}
 		return count;
+	}
+	
+	public Optional<Post> findPostByHighestViewToday(){
+		Timestamp t = Timestamp.valueOf(LocalDate.now().toString());
+		con = getConnection();
+		String query = "SELECT * FROM " + TABLE + " WHERE upload_date_time > ? ORDER BY views DESC LIMIT 1";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setTimestamp(1, t);
+			rs = ps.executeQuery();
+			Post post = new Post();
+			if(rs.next()) {
+				post.setPostId(rs.getLong("post_id"));
+				post.setTitle(rs.getString("title"));
+				post.setContent(rs.getString("content"));
+				post.setUserId(rs.getLong("user_id"));
+				post.setViews(rs.getLong("views"));
+				post.setUpdateDateTime(rs.getTimestamp("update_date_time"));
+				post.setUploadDateTime(rs.getTimestamp("upload_date_time"));
+			}
+			return Optional.ofNullable(post);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return Optional.ofNullable(null);
 	}
 }
