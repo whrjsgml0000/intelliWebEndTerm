@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.whrjsgml.dto.InsertPostDTO;
+import com.whrjsgml.dto.UpdatePostDTO;
 import com.whrjsgml.entity.Post;
 
 public class PostDAO extends DAO {
@@ -72,7 +73,7 @@ public class PostDAO extends DAO {
 		} finally {
 			closeAll();
 		}
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 	
 	public long insertPost(InsertPostDTO insertPostDTO) {
@@ -199,5 +200,21 @@ public class PostDAO extends DAO {
 			closeAll();
 		}
 		return Optional.empty();
+	}
+	
+	public void updatePostById(UpdatePostDTO updatePostDTO) {
+		con = getConnection();
+		String query = "UPDATE " + TABLE + " SET title=?, content=? WHERE post_id=?";
+		try {
+			ps = con.prepareStatement(query);
+			ps.setString(1, updatePostDTO.getTitle());
+			ps.setString(2, updatePostDTO.getContent());
+			ps.setLong(3, updatePostDTO.getPostId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
 	}
 }

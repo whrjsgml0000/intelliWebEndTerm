@@ -22,6 +22,7 @@ User user = (User) session.getAttribute(Session.USERINFO);
 if(user.getId() == postDAO.findPostById(lPostId).get().getUserId()){
 %>
 	<a href="Delete_post.jsp?post_id=<%=lPostId%>">삭제</a>
+	<a href="Update_post.jsp?post_id=<%=lPostId%>">수정</a>
 <%
 }
 %>

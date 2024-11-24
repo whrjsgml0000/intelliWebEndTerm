@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public abstract class DAO {
+	private static final Logger logger = Logger.getLogger(DAO.class.getName());
 	protected static final String CLASS_NAME = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/board";
 	private static final String USER = "root";
@@ -23,8 +25,7 @@ public abstract class DAO {
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("get connection!");
+		logger.info("get connection!");
 		return c;
 	}
 	
