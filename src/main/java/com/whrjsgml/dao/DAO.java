@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public abstract class DAO {
 	protected static final String CLASS_NAME = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3307/board";
+	private static final String URL = "jdbc:mysql://localhost:3306/board";
 	private static final String USER = "root";
-	private static final String PASSWORD = "1234567890";
+	private static final String PASSWORD = "1234";
 	protected ResultSet rs;
 	protected PreparedStatement ps;
 	protected Connection con;
