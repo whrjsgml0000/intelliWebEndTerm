@@ -57,10 +57,10 @@
 				out.println("<img src=\"" + imagePath.get(i) + "\"/>");
 			}
 			%>
-			<p><%=post.getViews() %></p>
-			<p><%=post.getUpdateDateTime() %></p>
-			<p><%=post.getUploadDateTime() %></p>
-			<p><%=post.getUserId() %>
+			<p>조회수 : <%=post.getViews() %></p>
+			<p>수정 일시 : <%=post.getUpdateDateTime() %></p>
+			<p>작성 일시 : <%=post.getUploadDateTime() %></p>
+			<p>작성자 : <%=post.getUser().getUserNickname() %>
 		</main>
 		<hr>
 		<jsp:include page="Post_bottom.jsp?post_id=<%=postId %>"/>
