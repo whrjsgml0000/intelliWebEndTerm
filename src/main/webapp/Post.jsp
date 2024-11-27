@@ -54,7 +54,7 @@
 			<p><%=post.getContent() %></p>
 			<%
 			for(int i=0;i<imagePath.size();i++){
-				out.println("<img src=\"" + imagePath.get(i) + "\"/>");
+				out.println("<img src=\"" + imagePath.get(i) + "\" class=\"w-100\"/>");
 			}
 			%>
 			<p>조회수 : <%=post.getViews() %></p>
