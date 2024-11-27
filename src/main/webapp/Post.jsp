@@ -35,7 +35,7 @@
    		return;
    	}
    	Post post = opPost.get();
-   	
+
    	ImageDAO imageDAO = new ImageDAO();
    	List<Image> images = imageDAO.findImageByPostId(lPostId);
    	List<String> imagePath = images.stream()

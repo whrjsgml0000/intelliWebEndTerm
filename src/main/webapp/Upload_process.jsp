@@ -15,8 +15,10 @@
 <%@ page import="java.io.*" %>
 
 <%
+String basePath = request.getServletContext().getRealPath("/");
+String imageUploadPath = basePath + "resources/image";
 DiskFileUpload dUpload = new DiskFileUpload();
-dUpload.setRepositoryPath(FileSetting.IMAGE_UPLOAD_PATH);
+dUpload.setRepositoryPath(imageUploadPath);
 dUpload.setFileSizeMax(FileSetting.UPLOAD_MAX_SIZE);
 List<FileItem> list= dUpload.parseRequest(request);
 List<FileItem> formFieldItems = list.stream()
@@ -40,6 +42,10 @@ InsertPostDTO insertPostDTO = new InsertPostDTO();
 insertPostDTO.setTitle(title);
 insertPostDTO.setContent(content);
 insertPostDTO.setUserId(user.getId());
+
+File f = new File(imageUploadPath);
+f.mkdirs();
+
 PostDAO postDAO = new PostDAO();
 ImageDAO imageDAO = new ImageDAO();
 
@@ -55,15 +61,15 @@ while(itemIter.hasNext()){
 			continue;
 		}
 		// 파일 중복 이름 방지
-		storedName = storedName.substring(storedName.indexOf("\\") + 1, storedName.lastIndexOf(".")) 
+		storedName = storedName.substring(storedName.indexOf("/") + 1, storedName.lastIndexOf(".")) 
 		+ UUID.randomUUID().toString()
 		+ storedName.substring(storedName.lastIndexOf("."));
 		imageDTO.setStoredName(storedName);
 		imageDTO.setPostId(generatedId);
+		imageDTO.setStoredPath(imageUploadPath);
 		
 		imageDAO.insertImage(imageDTO);
-		
-		File file = new File(FileSetting.IMAGE_UPLOAD_PATH + "\\" + storedName);
+		File file = new File(imageUploadPath + "/" + storedName);
 		fileItem.write(file);
 	}
 }

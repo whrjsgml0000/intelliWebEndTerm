@@ -16,7 +16,7 @@ public class ImageDAO extends DAO {
 		String query = "INSERT INTO " + TABLE + "(path,stored_name,post_id) VALUES(?,?,?)";
 		try {
 			ps = con.prepareStatement(query);
-			ps.setString(1, FileSetting.IMAGE_UPLOAD_PATH);
+			ps.setString(1, imageDTO.getStoredPath());
 			ps.setString(2, imageDTO.getStoredName());
 			ps.setLong(3, imageDTO.getPostId());
 			
