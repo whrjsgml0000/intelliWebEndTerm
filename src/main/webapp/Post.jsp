@@ -35,7 +35,7 @@
    		return;
    	}
    	Post post = opPost.get();
-   	
+
    	ImageDAO imageDAO = new ImageDAO();
    	List<Image> images = imageDAO.findImageByPostId(lPostId);
    	List<String> imagePath = images.stream()
@@ -54,13 +54,13 @@
 			<p><%=post.getContent() %></p>
 			<%
 			for(int i=0;i<imagePath.size();i++){
-				out.println("<img src=\"" + imagePath.get(i) + "\"/>");
+				out.println("<img src=\"" + imagePath.get(i) + "\" class=\"w-100\"/>");
 			}
 			%>
-			<p><%=post.getViews() %></p>
-			<p><%=post.getUpdateDateTime() %></p>
-			<p><%=post.getUploadDateTime() %></p>
-			<p><%=post.getUserId() %>
+			<p>조회수 : <%=post.getViews() %></p>
+			<p>수정 일시 : <%=post.getUpdateDateTime() %></p>
+			<p>작성 일시 : <%=post.getUploadDateTime() %></p>
+			<p>작성자 : <%=post.getUser().getUserNickname() %>
 		</main>
 		<hr>
 		<jsp:include page="Post_bottom.jsp?post_id=<%=postId %>"/>

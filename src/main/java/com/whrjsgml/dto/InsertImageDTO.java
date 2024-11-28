@@ -3,6 +3,7 @@ package com.whrjsgml.dto;
 public class InsertImageDTO {
 	private String storedName;
 	private Long postId;
+	private String storedPath;
 	public String getStoredName() {
 		return storedName;
 	}
@@ -14,6 +15,12 @@ public class InsertImageDTO {
 	}
 	public void setPostId(Long postId) {
 		this.postId = postId;
+	}
+	public String getStoredPath() {
+		return storedPath;
+	}
+	public void setStoredPath(String storedPath) {
+		this.storedPath = storedPath;
 	}
 	
 	

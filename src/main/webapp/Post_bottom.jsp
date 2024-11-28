@@ -41,7 +41,7 @@
 	    <col style="width: 15%;">
 	    <col style="width: 15%;">
 	    <col style="width: 5%;">
-  </colgroup>
+  	</colgroup>
 	<thead>
 	<tr>
 		<th>내용</th>
