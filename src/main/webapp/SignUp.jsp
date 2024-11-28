@@ -24,7 +24,7 @@
 		        <label><fmt:message key="password"/> : <input id="passwd" name="passwd" type="password" maxlength="20" class="form-control"></label><br>
 		        <label><fmt:message key="passwordCheck"/> : <input id="passwdCheck" name="passwdCheck" type="password" maxlength="20" class="form-control"></label><br>
 		        <label><fmt:message key="nickname"/> : <input id="nickname" name="nickname" type="text" maxlength="20" class="form-control"></label><br>
-		        <input id="signup" type="button" value='<fmt:message key="signUp"/>' onclick="validate()">
+		        <input id="signup" type="button" class="btn btn-primary" value='<fmt:message key="signUp"/>' onclick="validate()">
 		    </form>
 	    </div>
     </div>

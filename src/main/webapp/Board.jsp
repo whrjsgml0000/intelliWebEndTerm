@@ -65,7 +65,7 @@
 						<td><%=post.getPostId()%></td>
 						<td><a href="<%=Page.POST%>?post_id=<%=post.getPostId()%>"><%=post.getTitle() %></a></td>
 						<td><%=post.getUser().getUserNickname() %></td>
-						<td><%=post.getUploadDateTime() %></td>
+						<td><%=post.getUploadDateTime().toLocalDateTime() %></td>
 						<td><%=post.getViews() %></td>
 					</tr>
 				<% 
