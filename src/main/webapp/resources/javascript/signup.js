@@ -8,6 +8,8 @@ const validate = () => {
   let passwd = document.getElementById("passwd");
   /** @type {HTMLInputElement} */
   let passwdCheck = document.getElementById("passwdCheck");
+  /** @type {HTMLInputElement} */
+  let nickname= document.getElementById("nickname");
   /** @type {HTMLFormElement} */
   let signupForm = document.getElementById("signupForm");
 
@@ -24,6 +26,9 @@ const validate = () => {
     passwd.focus();
     passwd.value = "";
     passwdCheck.value = "";
+  } else if (nickname.value.length < 1){
+	 alert(`닉네임은 최소 한 글자 이상으로 만들어야 합니다.`);
+	 nickname.focus();
   } else {
     signupForm.submit();
   }
