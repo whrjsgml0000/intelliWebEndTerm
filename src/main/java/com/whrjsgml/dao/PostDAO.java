@@ -204,12 +204,14 @@ public class PostDAO extends DAO {
 	
 	public void updatePostById(UpdatePostDTO updatePostDTO) {
 		con = getConnection();
-		String query = "UPDATE " + TABLE + " SET title=?, content=? WHERE post_id=?";
+		Timestamp t = Timestamp.valueOf(LocalDateTime.now());
+		String query = "UPDATE " + TABLE + " SET title=?, content=?, update_date_time=? WHERE post_id=?";
 		try {
 			ps = con.prepareStatement(query);
 			ps.setString(1, updatePostDTO.getTitle());
 			ps.setString(2, updatePostDTO.getContent());
-			ps.setLong(3, updatePostDTO.getPostId());
+			ps.setTimestamp(3, t);
+			ps.setLong(4, updatePostDTO.getPostId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
