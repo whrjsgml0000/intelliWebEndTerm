@@ -58,8 +58,8 @@
 			}
 			%>
 			<p>조회수 : <%=post.getViews() %></p>
-			<p>수정 일시 : <%=post.getUpdateDateTime() %></p>
-			<p>작성 일시 : <%=post.getUploadDateTime() %></p>
+			<p>수정 일시 : <%=post.getUpdateDateTime().toLocalDateTime() %></p>
+			<p>작성 일시 : <%=post.getUploadDateTime().toLocalDateTime() %></p>
 			<p>작성자 : <%=post.getUser().getUserNickname() %>
 		</main>
 		<hr>
