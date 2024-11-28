@@ -12,36 +12,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 성공</title>
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 </head>
 <body>
 	<jsp:include page="<%=Page.NAVBAR %>"/>
 	
-	<h2>회원가입 성공</h2>
-	<%
-		String userId = request.getParameter("id");
-		String password = request.getParameter("passwd");
-		String nickname = request.getParameter("nickname");
-		InsertUserDTO insertUserDTO = new InsertUserDTO();
-		insertUserDTO.setUserId(userId);
-		insertUserDTO.setUserPass(password);
-		insertUserDTO.setUserNickname(nickname);
-		
-		UserDAO userDAO = new UserDAO();
-		userDAO.insertUser(insertUserDTO);
-		
-		Optional<User> userO = userDAO.findByUserId(userId);
-		if(userO.isPresent()){
-			User user = userO.get();
-			out.println(user.getId());
-			out.println(user.getUserId());
-			out.println(user.getUserPass());
-			out.println(user.getUserNickname());
-		}
-	%>
 	
-	<a href="<%=Page.MAIN%>">메인으로 돌아가기</a>
+	<div class="container mt-5">
+		<h2>회원가입 성공</h2>
+		<%
+			String userId = request.getParameter("id");
+			String password = request.getParameter("passwd");
+			String nickname = request.getParameter("nickname");
+			InsertUserDTO insertUserDTO = new InsertUserDTO();
+			insertUserDTO.setUserId(userId);
+			insertUserDTO.setUserPass(password);
+			insertUserDTO.setUserNickname(nickname);
+			
+			UserDAO userDAO = new UserDAO();
+			userDAO.insertUser(insertUserDTO);
+			
+			Optional<User> userO = userDAO.findByUserId(userId);
+			if(userO.isPresent()){
+				User user = userO.get();
+				out.println("<p>아이디 : " + user.getUserId() + "</p>");
+				out.println("<p>닉네임 : " + user.getUserNickname() + "</p>");
+			}
+		%>
 	
+		<a href="<%=Page.MAIN%>">메인으로 돌아가기</a>
+	</div>
 	<jsp:include page="<%=Page.FOOTER %>"/>
-	
 </body>
 </html>

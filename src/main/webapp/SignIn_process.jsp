@@ -23,5 +23,6 @@
 	}
 	
 	session.setAttribute(Session.USERINFO, user);
+	session.setMaxInactiveInterval(30 * 60);
 	response.sendRedirect(Page.MAIN);
 %>

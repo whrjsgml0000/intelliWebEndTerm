@@ -30,7 +30,7 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 		<%
 		if(opPost.isEmpty()){
 		%>
-			<a href="<%=Page.BOARD%>" class="btn btn-primary">오늘의 첫 게시글을 작성해보세요!</a>
+			<a href="<%=Page.UPLOAD%>" class="btn btn-primary">오늘의 첫 게시글을 작성해보세요!</a>
 		<%		
 		} else {
 			Post post = opPost.get();
@@ -41,7 +41,7 @@ Optional<Post> opPost = postDAO.findPostByHighestViewToday();
 				image = images.get(0);
 			}
 		%>
-			<p><fmt:message key="todayBest"/></p>
+			<h2><fmt:message key="todayBest"/></h2>
 			<a href="<%=Page.POST%>?post_id=<%=post.getPostId()%>" class="btn btn-primary">
 			<p><fmt:message key="title"/> : <%=post.getTitle() %></p>
 			<img alt="이미지가 없는 게시글입니다." src="<%=FileSetting.IMAGE_RELATIVE_PATH %><%=image!=null ? image.getImageStoredName():""%>" width="500">
