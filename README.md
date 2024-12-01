@@ -1,3 +1,8 @@
+# 웹 호스팅
+
+AWS의 EC2와 Duck DNS를 이용해서 웹 호스팅 했습니다.
+http://chogunhee.duckdns.org:8080/IntelliWebEndTerm/MainPage.jsp
+
 # 실행 가이드(서버 작동 가이드)
 
 1. cmd 를 실행한 후 `mysql -u root -p -P 3306` 을 입력한다.
